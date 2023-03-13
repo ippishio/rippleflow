@@ -9,26 +9,29 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import org.json.JSONObject
 import org.json.JSONTokener
+import java.math.RoundingMode
 import java.net.HttpURLConnection
 import java.net.URL
+import java.text.DecimalFormat
 
 
 class MainActivity : AppCompatActivity() {
 
 
     var balance_dollars: TextView? = null;
+    var balance_dollars_val: Float? = null
     var balance_XRP: TextView? = null;
-    var balance_XRP_val: Int = 10;
+    var balance_XRP_val: Float = 10.5f;
     //var button1: Button = findViewById(R.id.button2);
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        balance_dollars = findViewById(R.id.balance)
+        balance_dollars = findViewById(R.id.balance_dollars)
         //balance_dollars?.setText(convert_to_dollars(balance_XRP_val.toString()))
         convert_to_dollars(balance_XRP_val.toString())
-        balance_XRP = findViewById(R.id.textView2)
+        balance_XRP = findViewById(R.id.balance_xrp)
         balance_XRP?.setText("$balance_XRP_val XRP")
 
     }
@@ -42,8 +45,15 @@ class MainActivity : AppCompatActivity() {
                 if(ans != null) {
                     val jsonObject = JSONTokener(ans).nextValue() as JSONObject
 
-                    ans_t = (jsonObject.getString("price").toDouble() * balance.toInt()).toString()
-                    balance_dollars?.setText("$ans_t $")
+                   // ans_t = String.format("%.2f", jsonObject.getString("price").toDouble() * balance.toInt())
+                    val df = DecimalFormat("#.##")
+                    df.roundingMode = RoundingMode.DOWN
+                    ans_t = df.format(jsonObject.getString("price").toFloat() * balance.toFloat())
+
+                    balance_dollars?.setText("$$ans_t USD")
+
+                    balance_dollars_val = jsonObject.getString("price").toFloat() * balance.toFloat()
+
                     //val MyToast = Toast.makeText(this, , Toast.LENGTH_SHORT)
                     //MyToast.show()
 
