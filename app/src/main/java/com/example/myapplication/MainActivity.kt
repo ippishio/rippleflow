@@ -13,31 +13,32 @@ import java.math.RoundingMode
 import java.net.HttpURLConnection
 import java.net.URL
 import java.text.DecimalFormat
+import android.content.Intent
 
 
 class MainActivity : AppCompatActivity() {
 
 
-    var balance_dollars: TextView? = null;
-    var balance_dollars_val: Float? = null
-    var balance_XRP: TextView? = null;
-    var balance_XRP_val: Float = 10.5f;
-    //var button1: Button = findViewById(R.id.button2);
+    var balanceDollars: TextView? = null;
+    var balanceDollarsVal: Float? = null
+    var balanceXRP: TextView? = null;
+    var balanceXRPVal: Float = 10.5f;
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        balance_dollars = findViewById(R.id.balance_dollars)
+        balanceDollars = findViewById(R.id.balanceDollars)
         //balance_dollars?.setText(convert_to_dollars(balance_XRP_val.toString()))
-        convert_to_dollars(balance_XRP_val.toString())
-        balance_XRP = findViewById(R.id.balance_xrp)
-        balance_XRP?.setText("$balance_XRP_val XRP")
+        convertToDollars(balanceXRPVal.toString())
+        balanceXRP = findViewById(R.id.balanceXrp)
+        balanceXRP?.setText("$balanceXRPVal XRP")
 
     }
 
-    fun convert_to_dollars(balance: String){
-        var ans_t: String? = null;
+    fun convertToDollars(balance: String){
+        var ansT: String? = null;
         Thread {
             var ans: String?
             ans = URL("https://api3.binance.com/api/v3/avgPrice?symbol=XRPUSDT").readText()
@@ -45,32 +46,25 @@ class MainActivity : AppCompatActivity() {
                 if(ans != null) {
                     val jsonObject = JSONTokener(ans).nextValue() as JSONObject
 
-                   // ans_t = String.format("%.2f", jsonObject.getString("price").toDouble() * balance.toInt())
                     val df = DecimalFormat("#.##")
                     df.roundingMode = RoundingMode.DOWN
-                    ans_t = df.format(jsonObject.getString("price").toFloat() * balance.toFloat())
+                    ansT = df.format(jsonObject.getString("price").toFloat() * balance.toFloat())
 
-                    balance_dollars?.setText("$$ans_t USD")
+                    balanceDollars?.setText("$$ansT USD")
 
-                    balance_dollars_val = jsonObject.getString("price").toFloat() * balance.toFloat()
-
-                    //val MyToast = Toast.makeText(this, , Toast.LENGTH_SHORT)
-                    //MyToast.show()
-
+                    balanceDollarsVal = jsonObject.getString("price").toFloat() * balance.toFloat()
                 }
             }
         }.start()
     }
-    fun Button1Fun(view: View){
-//        val MyToast = Toast.makeText(this, URL("https://api3.binance.com/api/v3/avgPrice?symbol=XRPUSDT").readText(), Toast.LENGTH_SHORT)
-        //MyToast.show()
-        val MyToast = Toast.makeText(this, "Переведено", Toast.LENGTH_SHORT)
-        MyToast.show()
+    fun button1Fun(view: View){
+        val transferIntent = Intent(this, TransferActivity::class.java)
+        startActivity(transferIntent)
     }
 
-    fun Button2Fun(view: View){
-        val MyToast = Toast.makeText(this, "Переведено по NFC", Toast.LENGTH_SHORT)
-        MyToast.show()
+    fun button2Fun(view: View){
+        val myToast = Toast.makeText(this, "Переведено по NFC", Toast.LENGTH_SHORT)
+        myToast.show()
     }
 
 
