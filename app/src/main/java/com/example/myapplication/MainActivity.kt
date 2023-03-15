@@ -1,8 +1,7 @@
 package com.example.myapplication
 
+import android.content.Intent
 import android.os.Bundle
-import android.os.StrictMode
-import android.os.StrictMode.ThreadPolicy
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
@@ -10,10 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import org.json.JSONObject
 import org.json.JSONTokener
 import java.math.RoundingMode
-import java.net.HttpURLConnection
 import java.net.URL
 import java.text.DecimalFormat
-import android.content.Intent
 
 
 class MainActivity : AppCompatActivity() {
@@ -24,10 +21,8 @@ class MainActivity : AppCompatActivity() {
     var balanceXRP: TextView? = null;
     var balanceXRPVal: Float = 10.5f;
 
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onCreate(savedInstanceState1: Bundle?) {
+        super.onCreate(savedInstanceState1)
         setContentView(R.layout.activity_main)
         balanceDollars = findViewById(R.id.balanceDollars)
         //balance_dollars?.setText(convert_to_dollars(balance_XRP_val.toString()))
@@ -36,6 +31,7 @@ class MainActivity : AppCompatActivity() {
         balanceXRP?.setText("$balanceXRPVal XRP")
 
     }
+
 
     fun convertToDollars(balance: String){
         var ansT: String? = null;
@@ -67,7 +63,8 @@ class MainActivity : AppCompatActivity() {
         myToast.show()
     }
 
-
-
+    override fun onBackPressed() {
+        moveTaskToBack(true)
+    }
 
 }
