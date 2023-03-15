@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.StrictMode
 import android.os.StrictMode.ThreadPolicy
@@ -13,10 +14,6 @@ import java.math.RoundingMode
 import java.net.HttpURLConnection
 import java.net.URL
 import java.text.DecimalFormat
-import android.content.Intent
-import java.io.BufferedReader
-import java.io.DataOutputStream
-import java.io.InputStreamReader
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.core.extensions.jsonBody
 
@@ -30,10 +27,8 @@ class MainActivity : AppCompatActivity() {
     var balanceXRP: TextView? = null;
     var balanceXRPVal: Float = 10.5f;
 
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onCreate(savedInstanceState1: Bundle?) {
+        super.onCreate(savedInstanceState1)
         setContentView(R.layout.activity_main)
         balanceDollars = findViewById(R.id.balanceDollars)
         //balance_dollars?.setText(convert_to_dollars(balance_XRP_val.toString()))
@@ -64,6 +59,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }}
     }
+
     fun convertToDollars(balance: String){
         var ansT: String? = null;
         Thread {
@@ -93,7 +89,8 @@ class MainActivity : AppCompatActivity() {
         getBalance()
     }
 
-
-
+    override fun onBackPressed() {
+        moveTaskToBack(true)
+    }
 
 }
