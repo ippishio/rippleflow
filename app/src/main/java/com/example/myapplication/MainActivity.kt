@@ -14,11 +14,17 @@ import java.net.HttpURLConnection
 import java.net.URL
 import java.text.DecimalFormat
 import android.content.Intent
+import java.io.BufferedReader
+import java.io.DataOutputStream
+import java.io.InputStreamReader
+import com.github.kittinunf.fuel.Fuel
+import com.github.kittinunf.fuel.core.extensions.jsonBody
 
 
 class MainActivity : AppCompatActivity() {
 
-
+    val walletAddress = "rwS7dDsP8H3eafWosKSgNzSBQbGAHfKe9z";
+    val walletSecret = "sEdVSeKU5vPryw9QKWu2qx7ALDTm98V";
     var balanceDollars: TextView? = null;
     var balanceDollarsVal: Float? = null
     var balanceXRP: TextView? = null;
@@ -31,12 +37,33 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         balanceDollars = findViewById(R.id.balanceDollars)
         //balance_dollars?.setText(convert_to_dollars(balance_XRP_val.toString()))
-        convertToDollars(balanceXRPVal.toString())
+        getBalance()
         balanceXRP = findViewById(R.id.balanceXrp)
         balanceXRP?.setText("$balanceXRPVal XRP")
 
     }
 
+    fun getBalance() {
+        Fuel.post("https://s.altnet.rippletest.net:51234/")
+            .jsonBody("{ \"method\" : \"account_info\", " +
+                    "\"params\" : [" +
+                    "{\"account\": \"" +walletAddress+"\"," +
+                    "\"strict\": true,"+
+                    "\"ledger_index\":\"current\","+
+                    "\"queue\": true}"+
+                    "] }")
+            .also { println(it) }
+            .response { result -> run {
+                val (bytes, error) = result
+                if(bytes != null) {
+                    val jsonObject = JSONTokener(String(bytes)).nextValue() as JSONObject
+                    balanceXRPVal= jsonObject.getJSONObject("result").getJSONObject("account_data").getString("Balance").toInt()/1000000.0f
+                    println(balanceXRPVal)
+                    balanceXRP?.setText("$balanceXRPVal XRP")
+                    convertToDollars(balanceXRPVal.toString())
+                }
+            }}
+    }
     fun convertToDollars(balance: String){
         var ansT: String? = null;
         Thread {
@@ -63,8 +90,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun button2Fun(view: View){
-        val myToast = Toast.makeText(this, "Переведено по NFC", Toast.LENGTH_SHORT)
-        myToast.show()
+        getBalance()
     }
 
 
