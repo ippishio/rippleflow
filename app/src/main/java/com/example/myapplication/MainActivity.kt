@@ -1,17 +1,19 @@
 package com.example.myapplication
 
+import android.app.Dialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
-import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.DialogFragment
 import org.json.JSONObject
 import org.json.JSONTokener
 import java.math.RoundingMode
 import java.net.URL
 import java.text.DecimalFormat
-
 
 class MainActivity : AppCompatActivity() {
 
@@ -58,9 +60,21 @@ class MainActivity : AppCompatActivity() {
         startActivity(transferIntent)
     }
 
-    fun button2Fun(view: View){
-        val myToast = Toast.makeText(this, "Переведено по NFC", Toast.LENGTH_SHORT)
-        myToast.show()
+    fun buttonNfcFun(view: View){
+        val builder1 = AlertDialog.Builder(this)
+        builder1.setMessage("Перевести по NFC")
+        builder1.setCancelable(true)
+
+        builder1.setPositiveButton(
+            "Yes"
+        ) { dialog, id -> dialog.cancel() }
+
+        builder1.setNegativeButton(
+            "No"
+        ) { dialog, id -> dialog.cancel() }
+
+        val alert11 = builder1.create()
+        alert11.show()
     }
 
     override fun onBackPressed() {
