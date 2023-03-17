@@ -3,15 +3,11 @@ package com.example.memtone
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toolbar
-import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import com.example.memtone.databinding.FragmentTransferBinding
-import com.google.android.material.bottomsheet.BottomSheetDialog
 
 class TransferFragment : Fragment() {
 
@@ -27,7 +23,6 @@ class TransferFragment : Fragment() {
         _binding = FragmentTransferBinding.inflate(inflater, container, false)
 
 
-
         binding.btnSend.setOnClickListener {
             findNavController().navigate(R.id.action_transferFragment_to_zaebokFragment)
         }
@@ -35,8 +30,13 @@ class TransferFragment : Fragment() {
         binding.btnFabAddContact.setOnClickListener {
             BottomSheetFragment().show(fragmentManager!!, "newContactTag")
         }
-
+        setHasOptionsMenu(true)
         return binding.root
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        menu.findItem(R.id.action_profile).isVisible = false
+        super.onPrepareOptionsMenu(menu)
     }
 
 

@@ -22,6 +22,9 @@ class PinCodeFragment : Fragment() {
          _binding = FragmentPinCodeBinding.inflate(inflater, container, false)
 
         binding.textButtonNext.setOnClickListener {
+//            findNavController().navigate(R.id.action_pinCodeFragment2_to_mainFragment2)
+//            vagetFragmentNavController(R.id.actio)
+//            navigationController.navigate(R.id.action_pinCodeFragment2_to_mainFragment2)
             findNavController().navigate(R.id.action_pinCodeFragment_to_mainFragment)
         }
 

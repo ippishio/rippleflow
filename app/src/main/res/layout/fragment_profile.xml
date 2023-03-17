@@ -11,14 +11,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnLogOut"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextAddress"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Address" />
+            android:layout_height="match_parent"
+            android:hint="Address"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 

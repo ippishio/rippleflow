@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
-import com.example.memtone.databinding.FragmentPinCodeBinding
 import com.example.memtone.databinding.FragmentRegistrationBinding
 
 
@@ -18,12 +17,6 @@ class RegistrationFragment : Fragment() {
 
     private var _binding : FragmentRegistrationBinding? = null
     private val binding get() = _binding!!
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true)
-    }
 
 
     override fun onCreateView(
@@ -43,12 +36,14 @@ class RegistrationFragment : Fragment() {
             findNavController().navigate(R.id.action_registrationFragment_to_mainFragment)
         }
 
+        setHasOptionsMenu(true)
+
         return binding.root
     }
 
     override fun onPrepareOptionsMenu(menu: Menu) {
+        menu.findItem(R.id.action_profile).isVisible = false
         super.onPrepareOptionsMenu(menu)
-        menu.clear()
     }
 
     override fun onDestroyView() {
