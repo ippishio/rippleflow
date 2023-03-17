@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PinCodeFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/textButton1"
+                android:layout_width="wrap_content"
+                android:layout_height="93dp"
+                android:text="1"
+                android:layout_marginRight="10dp"/>
+
+            <Button
+                android:id="@+id/textButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="93dp"
+                android:text="2" />
+
+            <Button
+                android:id="@+id/textButton3"
+                android:layout_width="wrap_content"
+                android:layout_height="93dp"
+                android:text="3"
+                android:layout_marginLeft="10dp"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/textButton4"
+                android:layout_width="wrap_content"
+                android:layout_height="93dp"
+                android:text="4"
+                android:layout_marginRight="10dp"/>
+
+            <Button
+                android:id="@+id/textButton5"
+                android:layout_width="wrap_content"
+                android:layout_height="93dp"
+                android:text="5" />
+
+            <Button
+                android:id="@+id/textButton6"
+                android:layout_width="wrap_content"
+                android:layout_height="93dp"
+                android:text="6"
+                android:layout_marginLeft="10dp"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/textButton7"
+                android:layout_width="wrap_content"
+                android:layout_height="93dp"
+                android:text="7"
+                android:layout_marginRight="10dp"/>
+
+            <Button
+                android:id="@+id/textButton8"
+                android:layout_width="wrap_content"
+                android:layout_height="93dp"
+                android:text="8" />
+
+            <Button
+                android:id="@+id/textButton9"
+                android:layout_width="wrap_content"
+                android:layout_height="93dp"
+                android:text="9"
+                android:layout_marginLeft="10dp"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/textButtonBack"
+                android:layout_width="wrap_content"
+                android:layout_height="93dp"
+                android:text="Back"
+                android:layout_marginRight="10dp"/>
+
+            <Button
+                android:id="@+id/textButton0"
+                android:layout_width="wrap_content"
+                android:layout_height="93dp"
+                android:text="8" />
+
+            <Button
+                android:id="@+id/textButtonNext"
+                android:layout_width="wrap_content"
+                android:layout_height="93dp"
+                android:text="OK"
+                android:layout_marginLeft="10dp"
+                 />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/registrationFragment">
+
+    <fragment
+        android:id="@+id/registrationFragment"
+        android:name="com.example.memtone.RegistrationFragment"
+        android:label="fragment_registration"
+        tools:layout="@layout/fragment_registration" >
+        <action
+            android:id="@+id/action_registrationFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
+            app:popUpTo="@id/registrationFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/pinCodeFragment"
+        android:name="com.example.memtone.PinCodeFragment"
+        android:label="fragment_pin_code"
+        tools:layout="@layout/fragment_pin_code" >
+        <action
+            android:id="@+id/action_pinCodeFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
+            app:popUpTo="@id/pinCodeFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.memtone.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_transferFragment"
+            app:destination="@id/transferFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left" />
+        <action
+            android:id="@+id/action_mainFragment_to_nfcFragment"
+            app:destination="@id/nfcFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+        <action
+            android:id="@+id/action_mainFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/transferFragment"
+        android:name="com.example.memtone.TransferFragment"
+        android:label="fragment_transfer"
+        tools:layout="@layout/fragment_transfer" >
+        <action
+            android:id="@+id/action_transferFragment_to_zaebokFragment"
+            app:destination="@id/zaebokFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/nfcFragment"
+        android:name="com.example.memtone.NfcFragment"
+        android:label="fragment_nfc"
+        tools:layout="@layout/fragment_nfc" >
+        <action
+            android:id="@+id/action_nfcFragment_to_zaebokFragment"
+            app:destination="@id/zaebokFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/zaebokFragment"
+        android:name="com.example.memtone.ZaebokFragment"
+        android:label="fragment_zaebok"
+        tools:layout="@layout/fragment_zaebok" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.memtone.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+</navigation>
