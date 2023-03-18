@@ -6,10 +6,55 @@
     android:layout_height="match_parent"
     tools:context=".PinCodeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayoutCompat6"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <View
+            android:id="@+id/imageView1"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:background="@drawable/pc_view_grey" />
+
+        <View
+            android:id="@+id/imageView2"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/pc_view_grey" />
+
+        <View
+            android:id="@+id/imageView3"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/pc_view_grey" />
+
+        <View
+            android:id="@+id/imageView4"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/pc_view_grey" />
+
+        <View
+            android:id="@+id/imageView5"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/pc_view_grey" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 
     <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/linearLayoutCompat6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -23,25 +68,31 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <Button
+            <com.google.android.material.button.MaterialButton
+                style="?attr/materialIconButtonStyle"
                 android:id="@+id/textButton1"
                 android:layout_width="wrap_content"
-                android:layout_height="93dp"
-                android:text="1"
-                android:layout_marginRight="10dp"/>
+                android:layout_height="wrap_content"
+                android:textSize="36dp"
+                android:layout_marginRight="10dp"
+                android:text="1" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
+                style="?attr/materialIconButtonStyle"
                 android:id="@+id/textButton2"
                 android:layout_width="wrap_content"
-                android:layout_height="93dp"
+                android:layout_height="wrap_content"
+                android:textSize="36dp"
                 android:text="2" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
+                style="?attr/materialIconButtonStyle"
                 android:id="@+id/textButton3"
                 android:layout_width="wrap_content"
-                android:layout_height="93dp"
-                android:text="3"
-                android:layout_marginLeft="10dp"/>
+                android:layout_height="wrap_content"
+                android:textSize="36dp"
+                android:layout_marginLeft="10dp"
+                android:text="3" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -49,25 +100,31 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <Button
+            <com.google.android.material.button.MaterialButton
+                style="?attr/materialIconButtonStyle"
                 android:id="@+id/textButton4"
                 android:layout_width="wrap_content"
-                android:layout_height="93dp"
-                android:text="4"
-                android:layout_marginRight="10dp"/>
+                android:layout_height="wrap_content"
+                android:textSize="36dp"
+                android:layout_marginRight="10dp"
+                android:text="4" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
+                style="?attr/materialIconButtonStyle"
                 android:id="@+id/textButton5"
                 android:layout_width="wrap_content"
-                android:layout_height="93dp"
+                android:layout_height="wrap_content"
+                android:textSize="36dp"
                 android:text="5" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
+                style="?attr/materialIconButtonStyle"
                 android:id="@+id/textButton6"
                 android:layout_width="wrap_content"
-                android:layout_height="93dp"
-                android:text="6"
-                android:layout_marginLeft="10dp"/>
+                android:layout_height="wrap_content"
+                android:textSize="36dp"
+                android:layout_marginLeft="10dp"
+                android:text="6" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -75,25 +132,31 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <Button
+            <com.google.android.material.button.MaterialButton
+                style="?attr/materialIconButtonStyle"
                 android:id="@+id/textButton7"
                 android:layout_width="wrap_content"
-                android:layout_height="93dp"
-                android:text="7"
-                android:layout_marginRight="10dp"/>
+                android:layout_height="wrap_content"
+                android:textSize="36dp"
+                android:layout_marginRight="10dp"
+                android:text="7" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
+                style="?attr/materialIconButtonStyle"
                 android:id="@+id/textButton8"
                 android:layout_width="wrap_content"
-                android:layout_height="93dp"
+                android:layout_height="wrap_content"
+                android:textSize="36dp"
                 android:text="8" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
+                style="?attr/materialIconButtonStyle"
                 android:id="@+id/textButton9"
                 android:layout_width="wrap_content"
-                android:layout_height="93dp"
-                android:text="9"
-                android:layout_marginLeft="10dp"/>
+                android:layout_height="wrap_content"
+                android:textSize="36dp"
+                android:layout_marginLeft="10dp"
+                android:text="9"/>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -101,26 +164,31 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <Button
-                android:id="@+id/textButtonBack"
+            <com.google.android.material.button.MaterialButton
+                style="?attr/materialIconButtonStyle"
+                android:id="@+id/textButtonFingerPrint"
                 android:layout_width="wrap_content"
-                android:layout_height="93dp"
-                android:text="Back"
-                android:layout_marginRight="10dp"/>
+                android:layout_height="wrap_content"
+                android:textSize="36dp"
+                android:layout_marginRight="10dp"
+                app:icon="@drawable/fingerprint_svgrepo_com"/>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
+                style="?attr/materialIconButtonStyle"
                 android:id="@+id/textButton0"
                 android:layout_width="wrap_content"
-                android:layout_height="93dp"
-                android:text="8" />
+                android:layout_height="wrap_content"
+                android:textSize="36dp"
+                android:text="0" />
 
-            <Button
-                android:id="@+id/textButtonNext"
+            <com.google.android.material.button.MaterialButton
+                style="?attr/materialIconButtonStyle"
+                android:id="@+id/textButtonDelete"
                 android:layout_width="wrap_content"
-                android:layout_height="93dp"
-                android:text="OK"
-                android:layout_marginLeft="10dp"
-                 />
+                android:layout_height="wrap_content"
+                android:textSize="36dp"
+                app:icon="@drawable/currency_cent_svgrepo_com"
+                android:layout_marginLeft="10dp"/>
         </androidx.appcompat.widget.LinearLayoutCompat>
 
 

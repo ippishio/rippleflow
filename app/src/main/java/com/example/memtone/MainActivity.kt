@@ -1,8 +1,12 @@
 package com.example.memtone
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.Menu
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.biometric.BiometricPrompt
+import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -10,6 +14,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.memtone.databinding.ActivityMainBinding
+import java.util.concurrent.Executor
 
 
 class MainActivity : AppCompatActivity() {
@@ -17,6 +22,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
+
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         super.onCreate(savedInstanceState)
@@ -41,13 +47,14 @@ class MainActivity : AppCompatActivity() {
         binding.toolbar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.action_profile -> {
-                    navController.navigateUp()
-                    navController.navigate(R.id.profileFragment)
+//                    navController.navigateUp()
+                    navController.navigate(R.id.profileFragm)
                     true
                 }
                 else -> false
             }
         }
+
 
     }
 

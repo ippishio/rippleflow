@@ -6,16 +6,15 @@ import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
-import com.example.memtone.databinding.FragmentRegistrationBinding
+import com.example.memtone.databinding.FragmentCreatePinCodeBinding
+import com.example.memtone.databinding.FragmentMainBinding
 
 
-class RegistrationFragment : Fragment() {
+class CreatePinCodeFragment : Fragment() {
 
 
-    private var _binding : FragmentRegistrationBinding? = null
+    private var _binding : FragmentCreatePinCodeBinding? = null
     private val binding get() = _binding!!
 
 
@@ -23,22 +22,19 @@ class RegistrationFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentRegistrationBinding.inflate(inflater, container, false)
+        _binding = FragmentCreatePinCodeBinding.inflate(inflater, container, false)
 
-        (activity as AppCompatActivity).supportActionBar?.setHomeButtonEnabled(false)
+        return binding.root
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        binding.btnLogin.setOnClickListener {
-
-            val addressText = binding.editTextAddress.text.toString()
-            val passwordText = binding.editTextPassword.text.toString()
-
-            findNavController().navigate(R.id.action_registrationFragment_to_createPinCodeFragment)
+        binding.btnLogButton.setOnClickListener {
+            findNavController().navigate(R.id.action_createPinCodeFragment_to_mainFragment)
         }
 
         setHasOptionsMenu(true)
-
-        return binding.root
     }
 
     override fun onPrepareOptionsMenu(menu: Menu) {

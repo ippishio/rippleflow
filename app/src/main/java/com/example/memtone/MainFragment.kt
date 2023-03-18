@@ -2,9 +2,13 @@ package com.example.memtone
 
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
+import androidx.biometric.BiometricPrompt
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.memtone.databinding.FragmentMainBinding
+import java.util.concurrent.Executor
 
 
 class MainFragment : Fragment() {
@@ -17,6 +21,7 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
+
 
 
         /*binding.btnTransfer.setOnClickListener {
@@ -32,8 +37,6 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        
 
         binding.btnNFC.setOnClickListener {
             findNavController().navigate(R.id.action_mainFragment_to_nfcFragment)

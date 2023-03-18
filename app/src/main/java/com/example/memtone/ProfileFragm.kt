@@ -7,15 +7,13 @@ import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
-import com.example.memtone.databinding.FragmentRegistrationBinding
+import com.example.memtone.databinding.FragmentProfile2Binding
 
 
-class RegistrationFragment : Fragment() {
+class ProfileFragm : Fragment() {
 
-
-    private var _binding : FragmentRegistrationBinding? = null
+    private var _binding : FragmentProfile2Binding? = null
     private val binding get() = _binding!!
 
 
@@ -23,22 +21,19 @@ class RegistrationFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentRegistrationBinding.inflate(inflater, container, false)
+        _binding = FragmentProfile2Binding.inflate(inflater, container, false)
 
-        (activity as AppCompatActivity).supportActionBar?.setHomeButtonEnabled(false)
-
-
-        binding.btnLogin.setOnClickListener {
-
-            val addressText = binding.editTextAddress.text.toString()
-            val passwordText = binding.editTextPassword.text.toString()
-
-            findNavController().navigate(R.id.action_registrationFragment_to_createPinCodeFragment)
+        binding.btnChangePIN.setOnClickListener {
+            BottomSheetChangePINFragment().show(fragmentManager!!, "SS")
         }
 
         setHasOptionsMenu(true)
-
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
     }
 
     override fun onPrepareOptionsMenu(menu: Menu) {
