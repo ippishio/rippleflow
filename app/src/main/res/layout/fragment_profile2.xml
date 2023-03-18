@@ -4,21 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfileFragment">
+    tools:context=".ProfileFragm">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnLogOut"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="120dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp">
+
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextAddress"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Address"/>
+            android:hint="Address" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -26,20 +27,18 @@
         android:id="@+id/btnChangePIN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
         android:hint="Change PIN"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/textInputLayout3"
-        app:layout_constraintTop_toTopOf="@+id/btnLogOut"
-        app:layout_constraintVertical_bias="0.0" />
+        android:layout_marginBottom="40dp"/>
 
     <Button
         android:id="@+id/btnLogOut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="60dp"
-        android:layout_marginBottom="48dp"
         android:hint="Log out"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/textInputLayout3" />
+        app:layout_constraintEnd_toEndOf="@+id/textInputLayout3"
+        android:layout_marginBottom="40dp"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
