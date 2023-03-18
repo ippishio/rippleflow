@@ -92,5 +92,9 @@
         android:id="@+id/profileFragm"
         android:name="com.example.memtone.ProfileFragm"
         android:label="fragment_profile2"
-        tools:layout="@layout/fragment_profile2" />
+        tools:layout="@layout/fragment_profile2" >
+        <action
+            android:id="@+id/action_profileFragm_to_registrationFragment"
+            app:destination="@id/registrationFragment" />
+    </fragment>
 </navigation>

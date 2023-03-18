@@ -6,10 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.example.memtone.databinding.FragmentBottomSheetTransferBinding
-import com.example.memtone.databinding.FragmentTransferBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class BottomSheetFragment: BottomSheetDialogFragment() {
+class BottomSheetTransferFragment: BottomSheetDialogFragment() {
     private lateinit var binding: FragmentBottomSheetTransferBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

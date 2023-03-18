@@ -2,7 +2,10 @@ package com.example.memtone
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.os.Build
 import android.os.Bundle
+import android.os.VibrationEffect
+import android.os.Vibrator
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,6 +16,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.memtone.databinding.FragmentPinCodeBinding
+
 
 class PinCodeFragment : Fragment() {
 
@@ -26,7 +30,17 @@ class PinCodeFragment : Fragment() {
     private lateinit var num_03: String
     private lateinit var num_04: String
 
+    private lateinit var preferences: SharedPreferences
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        preferences = activity?.getSharedPreferences(
+            APP_PREFERENCES_PIN, Context.MODE_PRIVATE
+        )!!
+
+
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -119,16 +133,15 @@ class PinCodeFragment : Fragment() {
                     num_04 = numbersList.get(4)
                     binding.imageView5.setBackgroundResource(R.drawable.pc_view_blue)
                     passCode = num_00 + num_01 + num_02 +num_03 +num_04
-                    findNavController().navigate(R.id.action_pinCodeFragment_to_mainFragment)
-//
-//                    if (getPassCode()?.isEmpty() == true) {
-//                        Toast.makeText(activity, "getpassLeng = 0", Toast.LENGTH_LONG).show()
-//                        savePassCode(passCode)
-//                    } else {
-//                        matchPassCode()
-//                        Log.d("DOESN'T WORK", "matchPassCode")
-//                    }
-//                    Log.e("First", getPassCode().toString())
+
+                    if (getPassCode() == passCode) {
+                        findNavController().navigate(R.id.action_pinCodeFragment_to_mainFragment)
+                    } else {
+                        numbers_list.clear()
+                        passNumber(numbers_list)
+                        vibratePhone()
+                        Toast.makeText(activity, "wrong PIN", Toast.LENGTH_LONG).show()
+                    }
                 }
 
             }
@@ -136,27 +149,17 @@ class PinCodeFragment : Fragment() {
 
     }
 
-    private fun savePassCode(passCode: String): SharedPreferences.Editor? {
-        val sharedPreferences = activity?.getPreferences(Context.MODE_PRIVATE)
-        val editor = sharedPreferences?.edit()
-        editor?.putString("passcode", passCode)
-        editor?.apply()
-        return editor
-    }
-
-    private fun matchPassCode() {
-        if(getPassCode().equals(passCode)) {
-            findNavController().navigate(R.id.action_pinCodeFragment_to_mainFragment)
+    fun Fragment.vibratePhone() {
+        val vibrator = context?.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        if (Build.VERSION.SDK_INT >= 26) {
+            vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE))
         } else {
-            Toast.makeText(activity, "password doesn't match", Toast.LENGTH_SHORT).show()
-            numbers_list.clear()
-            passNumber(numbers_list)
+            vibrator.vibrate(200)
         }
     }
-    private fun getPassCode(): String? {
-        val sharedPref = (activity?.getPreferences(Context.MODE_PRIVATE))
-        return sharedPref?.getString("passcode", "11111")
 
+    private fun getPassCode(): String? {
+        return preferences.getString(PREF_STORE, "00000")
     }
 
     override fun onPrepareOptionsMenu(menu: Menu) {

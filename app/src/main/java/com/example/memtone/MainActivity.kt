@@ -1,12 +1,10 @@
 package com.example.memtone
 
+import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.Menu
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.biometric.BiometricPrompt
-import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -16,18 +14,22 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.memtone.databinding.ActivityMainBinding
 import java.util.concurrent.Executor
 
-
+const val APP_PREFERENCES_KEY = "APP_PREFERENCES_KEY"
+const val APP_PREFERENCES_PIN = "APP_PREFERENCES_PIN"
+const val PREF_STORE = "PREF_STORE"
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
-
+    private lateinit var preferences: SharedPreferences
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
+        preferences = getSharedPreferences(APP_PREFERENCES_KEY, Context.MODE_PRIVATE)
+
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
@@ -56,24 +58,13 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
     }
-
-   /* override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.action_profile) {
-            val navController: NavController = Navigation.findNavController(
-                this,
-                R.id.nav_host_fragment
-            ) // replace "nav_host_fragment" with the id of your navHostFragment in activity layout
-            navController.navigate(R.id.action_mainFragment_to_profileFragment)
-            return true
-        }
-        return super.onOptionsItemSelected(item)
-    }*/
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)

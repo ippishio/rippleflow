@@ -26,7 +26,7 @@ class TransferFragment : Fragment() {
         }
 
         binding.btnFabAddContact.setOnClickListener {
-            BottomSheetFragment().show(fragmentManager!!, "newContactTag")
+            BottomSheetTransferFragment().show(fragmentManager!!, "newContactTag")
         }
         setHasOptionsMenu(true)
         return binding.root

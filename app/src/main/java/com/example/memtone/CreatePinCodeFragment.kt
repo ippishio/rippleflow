@@ -1,11 +1,14 @@
 package com.example.memtone
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.memtone.databinding.FragmentCreatePinCodeBinding
 import com.example.memtone.databinding.FragmentMainBinding
@@ -17,13 +20,15 @@ class CreatePinCodeFragment : Fragment() {
     private var _binding : FragmentCreatePinCodeBinding? = null
     private val binding get() = _binding!!
 
+    private lateinit var preferences: SharedPreferences
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentCreatePinCodeBinding.inflate(inflater, container, false)
-
+        preferences = activity?.getSharedPreferences(APP_PREFERENCES_PIN, Context.MODE_PRIVATE)!!
         return binding.root
     }
 
@@ -31,7 +36,17 @@ class CreatePinCodeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnLogButton.setOnClickListener {
-            findNavController().navigate(R.id.action_createPinCodeFragment_to_mainFragment)
+            val pin = binding.editTextPinCode.text.toString()
+            if (pin.length != 5)
+                Toast.makeText(activity, "PIN MUST CONTAIN 5 NUMBERS", Toast.LENGTH_SHORT).show()
+            else {
+                Toast.makeText(context, pin, Toast.LENGTH_SHORT).show()
+                preferences.edit()
+                    .putString(APP_PREFERENCES_PIN, pin)
+                    .apply()
+                Toast.makeText(activity, "PIN CODE $pin created", Toast.LENGTH_SHORT).show()
+                findNavController().navigate(R.id.action_createPinCodeFragment_to_mainFragment)
+            }
         }
 
         setHasOptionsMenu(true)
