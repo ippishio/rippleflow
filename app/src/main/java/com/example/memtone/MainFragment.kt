@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.provider.ContactsContract.CommonDataKinds.Website.URL
 import android.view.*
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -27,7 +28,7 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
-
+        (activity as AppCompatActivity).supportActionBar?.show()
 
 
 

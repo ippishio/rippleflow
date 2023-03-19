@@ -19,6 +19,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
@@ -48,6 +49,7 @@ class PinCodeFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        (activity as AppCompatActivity).supportActionBar?.hide()
 
         preferences = activity?.getSharedPreferences(
             APP_PREFERENCES_PIN, Context.MODE_PRIVATE

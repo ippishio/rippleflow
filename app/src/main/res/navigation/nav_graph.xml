@@ -8,22 +8,22 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.example.memtone.MainFragment"
-        android:label="fragment_main"
-        tools:layout="@layout/fragment_main" >
+        android:label="RippleFlow"
+        tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/action_mainFragment_to_transferFragment"
             app:destination="@id/transferFragment"
-            app:enterAnim="@anim/from_left"
-            app:exitAnim="@anim/to_right"
-            app:popEnterAnim="@anim/from_right"
-            app:popExitAnim="@anim/to_left" />
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@anim/slide_out_left1" />
         <action
             android:id="@+id/action_mainFragment_to_nfcFragment"
             app:destination="@id/nfcFragment"
-            app:enterAnim="@anim/from_right"
-            app:exitAnim="@anim/to_left"
-            app:popEnterAnim="@anim/from_left"
-            app:popExitAnim="@anim/to_right" />
+            app:enterAnim="@anim/slide_in_right1"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/slide_out_right" />
         <action
             android:id="@+id/action_mainFragment_to_profileFragm"
             app:destination="@id/profileFragm" />
@@ -31,8 +31,8 @@
     <fragment
         android:id="@+id/transferFragment"
         android:name="com.example.memtone.TransferFragment"
-        android:label="fragment_transfer"
-        tools:layout="@layout/fragment_transfer" >
+        android:label="Transfer"
+        tools:layout="@layout/fragment_transfer">
         <action
             android:id="@+id/action_transferFragment_to_zaebokFragment"
             app:destination="@id/zaebokFragment" />
@@ -43,8 +43,8 @@
     <fragment
         android:id="@+id/nfcFragment"
         android:name="com.example.memtone.NfcFragment"
-        android:label="fragment_nfc"
-        tools:layout="@layout/fragment_nfc" >
+        android:label="Transfer by NFC"
+        tools:layout="@layout/fragment_nfc">
         <action
             android:id="@+id/action_nfcFragment_to_zaebokFragment"
             app:destination="@id/zaebokFragment" />
@@ -91,8 +91,8 @@
     <fragment
         android:id="@+id/profileFragm"
         android:name="com.example.memtone.ProfileFragm"
-        android:label="fragment_profile2"
-        tools:layout="@layout/fragment_profile2" >
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile2">
         <action
             android:id="@+id/action_profileFragm_to_registrationFragment"
             app:destination="@id/registrationFragment" />

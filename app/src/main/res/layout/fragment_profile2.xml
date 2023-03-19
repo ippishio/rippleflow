@@ -27,16 +27,17 @@
         android:id="@+id/btnChangePIN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Change PIN"
+        android:layout_marginBottom="40dp"
+        android:text="Change PIN"
+        android:textColorLink="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textInputLayout3"
-        android:layout_marginBottom="40dp"/>
+        app:layout_constraintStart_toStartOf="@+id/textInputLayout3" />
 
     <Button
         android:id="@+id/btnLogOut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Log out"
+        android:text="Log out"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/textInputLayout3"
         android:layout_marginBottom="40dp"/>

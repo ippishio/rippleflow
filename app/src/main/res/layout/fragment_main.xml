@@ -28,8 +28,8 @@
         android:id="@+id/linearLayoutCompat2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="160dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayoutCompat5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -64,7 +64,7 @@
             android:id="@+id/textViewDollarXRPAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="500"
+            android:fontFamily="@font/opensans_light"
             android:textSize="30dp" />
 
 <!--        <com.google.android.material.textview.MaterialTextView
@@ -81,27 +81,47 @@
         android:id="@+id/linearLayoutCompat5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="100dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat3">
 
         <Button
             android:id="@+id/btnTransfer"
-            android:layout_width="120dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:text="Transfer" />
+            app:cornerRadius="10dp"
+            android:textSize="5pt"
+            android:text="Transfer by address" />
 
         <Button
             android:id="@+id/btnNFC"
-            android:layout_width="120dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:text="NFC" />
+            app:cornerRadius="10dp"
+            android:textSize="5pt"
+            android:text="Transfer by NFC" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="276dp"
+        android:layout_height="300dp"
+        android:src="@drawable/frame4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView12"
+        android:layout_width="120dp"
+        android:layout_height="261dp"
+        android:src="@drawable/frame3"
+        android:layout_marginTop="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

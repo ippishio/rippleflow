@@ -6,16 +6,43 @@
     android:layout_height="match_parent"
     tools:context=".CreatePinCodeFragment">
 
+    <ImageView
+        android:id="@+id/imageView11"
+        android:layout_width="200dp"
+        android:layout_height="227dp"
+        android:src="@drawable/frame2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="150dp"
+        android:layout_height="124dp"
+        android:src="@drawable/frame1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/opensans_reg"
+        android:layout_marginTop="200dp"
+        android:text="Create a PIN-code"
+        android:textSize="30dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginRight="90sp"
-        android:layout_marginTop="150sp"
-        android:layout_marginLeft="90sp">
+        app:layout_constraintTop_toBottomOf="@id/textView1"
+        android:layout_marginTop="80dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextPinCode"
@@ -24,17 +51,21 @@
             android:hint="PIN-code"
             android:inputType="number"
             android:maxLength="5"
-            app:layout_constraintTop_toTopOf="@+id/textInputLayout" />
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnLogButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="80dp"
+        android:fontFamily="@font/opensans_reg"
+        android:textSize="9pt"
+        app:cornerRadius="10dp"
+
         android:text="Login"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />

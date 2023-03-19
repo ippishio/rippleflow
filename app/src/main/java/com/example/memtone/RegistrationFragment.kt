@@ -52,7 +52,7 @@ class RegistrationFragment : Fragment() {
 //            val passwordText = binding.editTextPassword.text.toString()
 
         }
-
+        (activity as AppCompatActivity).supportActionBar?.hide()
         setHasOptionsMenu(true)
 
         return binding.root
