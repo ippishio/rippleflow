@@ -5,6 +5,11 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.hardware.biometrics.BiometricManager.Authenticators.BIOMETRIC_STRONG
 import android.hardware.biometrics.BiometricManager.Authenticators.DEVICE_CREDENTIAL
+import androidx.biometric.BiometricManager
+import androidx.biometric.BiometricPrompt
+import androidx.core.content.ContextCompat
+import androidx.navigation.fragment.findNavController
+import com.example.memtone.databinding.FragmentPinCodeBinding
 import android.os.Build
 import android.os.Bundle
 import android.os.VibrationEffect
@@ -16,14 +21,8 @@ import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.biometric.BiometricManager
-import androidx.biometric.BiometricPrompt
-import androidx.core.content.ContextCompat
-import androidx.navigation.fragment.findNavController
-import com.example.memtone.databinding.FragmentPinCodeBinding
 import java.util.concurrent.Executor
 
 
@@ -37,6 +36,7 @@ class PinCodeFragment : Fragment() {
     private var _binding : FragmentPinCodeBinding? = null
     private val binding get() = _binding!!
     private var passCode = "";
+
     private var numbers_list: ArrayList<String> = ArrayList()
     private lateinit var num_00: String
     private lateinit var num_01: String
@@ -173,7 +173,6 @@ class PinCodeFragment : Fragment() {
 
     }
 
-    @RequiresApi(Build.VERSION_CODES.R)
     fun checkDeviceHasBiometric() {
         val biometricManager = BiometricManager.from(requireContext())
         when (biometricManager.canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_STRONG or BiometricManager.Authenticators.DEVICE_CREDENTIAL)) {

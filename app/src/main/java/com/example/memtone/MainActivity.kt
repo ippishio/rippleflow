@@ -1,6 +1,8 @@
 package com.example.memtone
 
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.Menu
@@ -59,31 +61,16 @@ class MainActivity : AppCompatActivity() {
         }
 
         if(isAuthorized()) {
-//            Toast.makeText(this, "Auth", Toast.LENGTH_SHORT)
-//                .show()
-//            Toast.makeText(this, preferences.getString(APP_PREFERENCES_KEY, "keyNothing").toString(), Toast.LENGTH_SHORT)
-//                .show()
-//            Toast.makeText(this, preferences.getString(APP_PREFERENCES_PIN, "PinNothing").toString(), Toast.LENGTH_SHORT)
-//                .show()
             navController.navigate(R.id.pinCodeFragment)
         } else {
-
-//            Toast.makeText(this, "notAuth", Toast.LENGTH_SHORT)
-//                .show()
-//            Toast.makeText(this, preferences.getString(APP_PREFERENCES_KEY, "nonMainKEY").toString(), Toast.LENGTH_SHORT)
-//                .show()
-//            Toast.makeText(this, preferences.getString(APP_PREFERENCES_PIN, "nonMainPIN").toString(), Toast.LENGTH_SHORT)
-//                .show()
             navController.navigate(R.id.registrationFragment)
         }
+
 
     }
 
     private fun isAuthorized(): Boolean {
-        if (preferences.getString(APP_PREFERENCES_KEY, "").toString().equals(""))
-            return false
-        else
-            return true
+        return preferences.getString(APP_PREFERENCES_KEY, "").toString() != ""
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

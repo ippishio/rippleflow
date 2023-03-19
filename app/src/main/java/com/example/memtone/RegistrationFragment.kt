@@ -29,6 +29,7 @@ class RegistrationFragment : Fragment() {
         preferences = activity?.getSharedPreferences(APP_PREFERENCES_KEY, Context.MODE_PRIVATE)!!
         (activity as AppCompatActivity).supportActionBar?.setHomeButtonEnabled(false)
 
+
         binding.btnLogin.setOnClickListener {
 
             val key = binding.editTextKey.text.toString()

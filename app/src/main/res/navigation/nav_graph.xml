@@ -85,14 +85,13 @@
         <action
             android:id="@+id/action_createPinCodeFragment_to_mainFragment"
             app:destination="@id/mainFragment"
-            app:popUpTo="@id/registrationFragment"
+            app:popUpTo="@id/createPinCodeFragment"
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/profileFragm"
         android:name="com.example.memtone.ProfileFragm"
-        android:label="fragment_profile2"
-        tools:layout="@layout/fragment_profile2" >
+        tools:layout="@layout/fragment_profile2">
         <action
             android:id="@+id/action_profileFragm_to_registrationFragment"
             app:destination="@id/registrationFragment" />
