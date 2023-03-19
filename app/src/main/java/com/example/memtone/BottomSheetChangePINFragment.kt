@@ -34,7 +34,7 @@ class BottomSheetChangePINFragment: BottomSheetDialogFragment() {
         preferences.edit()
             .putString(APP_PREFERENCES_PIN, pin)
             .apply()
-        Toast.makeText(activity, "$pin CHANGED", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(activity, "$pin CHANGED", Toast.LENGTH_SHORT).show()
         dismiss()
     }
 

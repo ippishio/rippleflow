@@ -38,6 +38,13 @@ class RegistrationFragment : Fragment() {
                     .putString(APP_PREFERENCES_KEY, key)
                     .apply()
 
+//                Toast.makeText(activity, "Reg", Toast.LENGTH_SHORT)
+//                    .show()
+//                Toast.makeText(activity, preferences.getString(APP_PREFERENCES_KEY, "nothing").toString(), Toast.LENGTH_SHORT)
+//                    .show()
+//                Toast.makeText(activity, preferences.getString(APP_PREFERENCES_PIN, "nothing").toString(), Toast.LENGTH_SHORT)
+//                    .show()
+
                 findNavController().navigate(
                     R.id.action_registrationFragment_to_createPinCodeFragment
                 )

@@ -40,11 +40,11 @@ class CreatePinCodeFragment : Fragment() {
             if (pin.length != 5)
                 Toast.makeText(activity, "PIN MUST CONTAIN 5 NUMBERS", Toast.LENGTH_SHORT).show()
             else {
-                Toast.makeText(context, pin, Toast.LENGTH_SHORT).show()
                 preferences.edit()
                     .putString(APP_PREFERENCES_PIN, pin)
                     .apply()
                 Toast.makeText(activity, "PIN CODE $pin created", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(activity, preferences.getString(APP_PREFERENCES_PIN, "NON FOUND").toString(), Toast.LENGTH_SHORT).show()
                 findNavController().navigate(R.id.action_createPinCodeFragment_to_mainFragment)
             }
         }

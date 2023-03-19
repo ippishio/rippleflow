@@ -30,20 +30,25 @@ class ProfileFragm : Fragment() {
             BottomSheetChangePINFragment().show(fragmentManager!!, "SS")
         }
 
+//        Toast.makeText(activity, "Profile", Toast.LENGTH_SHORT)
+//            .show()
+//        Toast.makeText(activity, preferences.getString(APP_PREFERENCES_KEY, "nothingKEY").toString(), Toast.LENGTH_SHORT)
+//            .show()
+//        Toast.makeText(activity, preferences.getString(APP_PREFERENCES_PIN, "nothingPIN").toString(), Toast.LENGTH_SHORT)
+//            .show()
+
         binding.btnLogOut.setOnClickListener{
             preferences.edit()
                 .putString(APP_PREFERENCES_KEY, "")
+                .apply()
+            preferences.edit()
+                .putString(APP_PREFERENCES_PIN, "")
                 .apply()
             findNavController().navigate(R.id.action_profileFragm_to_registrationFragment)
         }
 
         setHasOptionsMenu(true)
         return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
     }
 
     override fun onPrepareOptionsMenu(menu: Menu) {

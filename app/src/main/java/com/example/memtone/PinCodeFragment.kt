@@ -1,24 +1,38 @@
 package com.example.memtone
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
+import android.hardware.biometrics.BiometricManager.Authenticators.BIOMETRIC_STRONG
+import android.hardware.biometrics.BiometricManager.Authenticators.DEVICE_CREDENTIAL
 import android.os.Build
 import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
+import android.provider.Settings
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
-import android.view.View.OnClickListener
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
+import androidx.annotation.RequiresApi
+import androidx.biometric.BiometricManager
+import androidx.biometric.BiometricPrompt
+import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import com.example.memtone.databinding.FragmentPinCodeBinding
+import java.util.concurrent.Executor
 
 
 class PinCodeFragment : Fragment() {
+    lateinit var info: String
+
+    private lateinit var executor: Executor
+    private lateinit var biometricPrompt: BiometricPrompt
+    private lateinit var promptInfo: BiometricPrompt.PromptInfo
 
     private var _binding : FragmentPinCodeBinding? = null
     private val binding get() = _binding!!
@@ -38,20 +52,29 @@ class PinCodeFragment : Fragment() {
         preferences = activity?.getSharedPreferences(
             APP_PREFERENCES_PIN, Context.MODE_PRIVATE
         )!!
-
-
+//        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        setHasOptionsMenu(true)
     }
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
          _binding = FragmentPinCodeBinding.inflate(inflater, container, false)
-
+        authOne()
         listeners()
+        return binding.root
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         setHasOptionsMenu(true)
-        return binding.root
+    }
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        menu.findItem(R.id.action_profile).isVisible = false
+        super.onPrepareOptionsMenu(menu)
     }
 
     private fun listeners() {
@@ -96,11 +119,89 @@ class PinCodeFragment : Fragment() {
             passNumber(numbers_list)
         }
         binding.textButtonFingerPrint.setOnClickListener {
-            Toast.makeText(activity, "FingerPrint", Toast.LENGTH_LONG).show()
+            authOne()
         }
         binding.textButtonDelete.setOnClickListener {
             numbers_list.clear()
             passNumber(numbers_list)
+
+        }
+    }
+
+    private fun authOne() {
+        checkDeviceHasBiometric()
+        fingerAuth()
+        biometricPrompt.authenticate(promptInfo)
+    }
+    private fun fingerAuth() {
+
+        executor = ContextCompat.getMainExecutor(requireContext())
+        biometricPrompt = BiometricPrompt(this, executor,
+            object : BiometricPrompt.AuthenticationCallback() {
+                override fun onAuthenticationError(
+                    errorCode: Int,
+                    errString: CharSequence,
+                ) {
+                    super.onAuthenticationError(errorCode, errString)
+                    /*Toast.makeText(context,
+                        "Authentication error: $errString", Toast.LENGTH_SHORT)
+                        .show()*/
+                }
+
+                override fun onAuthenticationSucceeded(
+                    result: BiometricPrompt.AuthenticationResult,
+                ) {
+                    super.onAuthenticationSucceeded(result)
+                    /*Toast.makeText(context,
+                        "Authentication succeeded!", Toast.LENGTH_SHORT)
+                        .show()*/
+                    findNavController().navigate(R.id.action_pinCodeFragment_to_mainFragment)
+                }
+
+                override fun onAuthenticationFailed() {
+                    super.onAuthenticationFailed()
+                   /* Toast.makeText(context, "Authentication failed",
+                        Toast.LENGTH_SHORT)
+                        .show()*/
+                }
+            })
+
+        promptInfo = BiometricPrompt.PromptInfo.Builder()
+            .setTitle("Entrance to RippleFlow")/**/
+            .setNegativeButtonText("Cancel")
+            .build()
+
+    }
+
+    @RequiresApi(Build.VERSION_CODES.R)
+    fun checkDeviceHasBiometric() {
+        val biometricManager = BiometricManager.from(requireContext())
+        when (biometricManager.canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_STRONG or BiometricManager.Authenticators.DEVICE_CREDENTIAL)) {
+            BiometricManager.BIOMETRIC_SUCCESS -> {
+                Log.d("app_tag", "App can authenticate using biometrics.")
+                info = "App can authenticate using biometrics."
+
+            }
+            BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE -> {
+                Log.e("app_tag", "No biometric features available on this device.")
+                info = "No biometric features available on this device."
+
+            }
+            BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE -> {
+                Log.e("app_tag", "Biometric features are currently unavailable.")
+                info = "Biometric features are currently unavailable."
+
+            }
+            BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED -> {
+                // Prompts the user to create credentials that your app accepts.
+                val enrollIntent = Intent(Settings.ACTION_BIOMETRIC_ENROLL).apply {
+                    putExtra(
+                        Settings.EXTRA_BIOMETRIC_AUTHENTICATORS_ALLOWED,
+                        BIOMETRIC_STRONG or DEVICE_CREDENTIAL)
+                }
+
+
+            }
         }
     }
 
@@ -134,7 +235,7 @@ class PinCodeFragment : Fragment() {
                     binding.imageView5.setBackgroundResource(R.drawable.pc_view_blue)
                     passCode = num_00 + num_01 + num_02 +num_03 +num_04
 
-                    if (getPassCode() == passCode) {
+                    if (getPassCode().equals(passCode)) {
                         findNavController().navigate(R.id.action_pinCodeFragment_to_mainFragment)
                     } else {
                         numbers_list.clear()
@@ -159,12 +260,7 @@ class PinCodeFragment : Fragment() {
     }
 
     private fun getPassCode(): String? {
-        return preferences.getString(PREF_STORE, "00000")
-    }
-
-    override fun onPrepareOptionsMenu(menu: Menu) {
-        menu.findItem(R.id.action_profile).isVisible = false
-        super.onPrepareOptionsMenu(menu)
+        return preferences.getString(APP_PREFERENCES_PIN, "")
     }
 
     override fun onDestroyView() {
