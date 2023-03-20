@@ -54,6 +54,7 @@ class PinCodeFragment : Fragment() {
             APP_PREFERENCES_PIN, Context.MODE_PRIVATE
         )!!
 //        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        (activity as AppCompatActivity).supportActionBar?.show()
         setHasOptionsMenu(true)
     }
 

@@ -9,6 +9,7 @@ import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import com.example.memtone.databinding.FragmentCreatePinCodeBinding
 import com.example.memtone.databinding.FragmentMainBinding
@@ -48,7 +49,6 @@ class CreatePinCodeFragment : Fragment() {
                 findNavController().navigate(R.id.action_createPinCodeFragment_to_mainFragment)
             }
         }
-
         setHasOptionsMenu(true)
     }
 
