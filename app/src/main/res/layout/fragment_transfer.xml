@@ -31,7 +31,8 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextAddress"
@@ -49,8 +50,9 @@
         android:id="@+id/btnSend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:text="Send"
+        android:layout_marginTop="20dp"
+        android:text="Transfer"
+        app:cornerRadius="10dp"
         app:layout_constraintStart_toStartOf="@+id/linearLayoutCompat4"
         app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat4" />
 
@@ -60,7 +62,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|right"
         android:text="Add contact"
-        android:layout_marginBottom="64dp"
+        android:textColor="@color/black"
+        android:layout_marginBottom="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/linearLayoutCompat4" />
 

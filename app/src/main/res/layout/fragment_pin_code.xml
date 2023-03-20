@@ -7,9 +7,26 @@
     tools:context=".PinCodeFragment">
 
 
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="200dp"
+        android:layout_height="227dp"
+        android:src="@drawable/frame2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="150dp"
+        android:layout_height="124dp"
+        android:src="@drawable/frame1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="155dp"
+        android:layout_height="15dp"
+        android:layout_marginTop="100dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/linearLayoutCompat6"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -26,28 +43,28 @@
             android:id="@+id/imageView2"
             android:layout_width="15dp"
             android:layout_height="15dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="20dp"
             android:background="@drawable/pc_view_grey" />
 
         <View
             android:id="@+id/imageView3"
             android:layout_width="15dp"
             android:layout_height="15dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="20dp"
             android:background="@drawable/pc_view_grey" />
 
         <View
             android:id="@+id/imageView4"
             android:layout_width="15dp"
             android:layout_height="15dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="20dp"
             android:background="@drawable/pc_view_grey" />
 
         <View
             android:id="@+id/imageView5"
             android:layout_width="15dp"
             android:layout_height="15dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="20dp"
             android:background="@drawable/pc_view_grey" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
@@ -74,7 +91,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="36dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginRight="30dp"
                 android:text="1" />
 
             <com.google.android.material.button.MaterialButton
@@ -91,7 +108,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="36dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="30dp"
                 android:text="3" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
@@ -106,7 +123,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="36dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginRight="30dp"
                 android:text="4" />
 
             <com.google.android.material.button.MaterialButton
@@ -123,7 +140,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="36dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="30dp"
                 android:text="6" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
@@ -138,7 +155,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="36dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginRight="30dp"
                 android:text="7" />
 
             <com.google.android.material.button.MaterialButton
@@ -155,7 +172,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="36dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="30dp"
                 android:text="9"/>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
@@ -170,7 +187,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="36dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginRight="30dp"
                 app:icon="@drawable/fingerprint_svgrepo_com"/>
 
             <com.google.android.material.button.MaterialButton
@@ -188,7 +205,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="36dp"
                 app:icon="@drawable/currency_cent_svgrepo_com"
-                android:layout_marginLeft="10dp"/>
+                android:layout_marginLeft="30dp"/>
         </androidx.appcompat.widget.LinearLayoutCompat>
 
 

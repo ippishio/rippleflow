@@ -22,7 +22,7 @@ import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import java.util.concurrent.Executor
 
 
@@ -48,6 +48,7 @@ class PinCodeFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        (activity as AppCompatActivity).supportActionBar?.hide()
 
         preferences = activity?.getSharedPreferences(
             APP_PREFERENCES_PIN, Context.MODE_PRIVATE
@@ -172,6 +173,7 @@ class PinCodeFragment : Fragment() {
             .build()
 
     }
+
 
     fun checkDeviceHasBiometric() {
         val biometricManager = BiometricManager.from(requireContext())
