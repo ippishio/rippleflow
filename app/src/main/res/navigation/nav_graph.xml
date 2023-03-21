@@ -26,7 +26,11 @@
             app:popExitAnim="@android:anim/slide_out_right" />
         <action
             android:id="@+id/action_mainFragment_to_profileFragm"
-            app:destination="@id/profileFragm" />
+            app:destination="@id/profileFragm"
+            app:enterAnim="@anim/slide_in_right1"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/transferFragment"
@@ -55,7 +59,6 @@
     <fragment
         android:id="@+id/zaebokFragment"
         android:name="com.wallet.rippleflow.ZaebokFragment"
-        android:label="fragment_zaebok"
         tools:layout="@layout/fragment_zaebok" />
     <fragment
         android:id="@+id/pinCodeFragment"
