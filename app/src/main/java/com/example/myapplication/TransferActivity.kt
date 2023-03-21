@@ -52,7 +52,7 @@ class TransferActivity : AppCompatActivity() {
         val newToast = Toast.makeText(this, "Переведено", Toast.LENGTH_SHORT)
         newToast.show()
         //sendXRP("rKYqT6pM7bLWShGUL9hQsHZjuucaBhTSYz", 50.0f)
-        var walletAddress = XRPL().classicAddress;
-        println(walletAddress)
+        //var walletAddress = XRPL().walletAddress;
+        //println(walletAddress)
     }
 }

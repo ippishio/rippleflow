@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.StrictMode
@@ -19,24 +20,34 @@ import com.github.kittinunf.fuel.core.extensions.jsonBody
 
 
 class MainActivity : AppCompatActivity() {
-
-    val walletAddress = "rwS7dDsP8H3eafWosKSgNzSBQbGAHfKe9z";
-    val walletSecret = "sEdVSeKU5vPryw9QKWu2qx7ALDTm98V";
+    val walletAddress = "r3RzmXAarUPCEMVBtqaYLLoJoB31S9mte7";
+    val walletSecret = "sEdTP3L3jVPZLMVH5Gu2jKueQSGJjgU";
     var balanceDollars: TextView? = null;
     var balanceDollarsVal: Float? = null
     var balanceXRP: TextView? = null;
     var balanceXRPVal: Float = 10.5f;
-
+    var walletAddressView: TextView? = null
     override fun onCreate(savedInstanceState1: Bundle?) {
         super.onCreate(savedInstanceState1)
         setContentView(R.layout.activity_main)
         balanceDollars = findViewById(R.id.balanceDollars)
         //balance_dollars?.setText(convert_to_dollars(balance_XRP_val.toString()))
-        getBalance()
-        balanceXRP = findViewById(R.id.balanceXrp)
-        balanceXRP?.setText("$balanceXRPVal XRP")
+        //getBalance()
+        Thread {
+            var ans = XRPL(walletSecret).getBalance()/1000000.0f
+            runOnUiThread {
+                balanceXRPVal = ans
+                convertToDollars(balanceXRPVal.toString())
+                balanceXRP = findViewById(R.id.balanceXrp)
+                balanceXRP?.setText("$balanceXRPVal XRP")
+                println(ans)
+            }
+        }.start()
 
+        // walletAddressView = findViewById(R.id.walletAddressView)
+       // walletAddressView?.setText(XRPL().walletAddress.toString())
     }
+
 
     fun getBalance() {
         Fuel.post("https://s.altnet.rippletest.net:51234/")
@@ -86,7 +97,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun button2Fun(view: View){
-        getBalance()
+        println("clicked")
+        Thread {
+            XRPL(walletSecret).sendXRP("rPXMYHM7u2m4iBSeAP3aiooQUr9PBYvGsa", 10000000) }.start()
     }
 
     override fun onBackPressed() {
