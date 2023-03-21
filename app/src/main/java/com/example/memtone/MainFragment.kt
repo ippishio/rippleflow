@@ -1,8 +1,11 @@
 package com.example.memtone
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
-import android.provider.ContactsContract.CommonDataKinds.Website.URL
 import android.view.*
+import androidx.activity.OnBackPressedCallback
+import androidx.activity.OnBackPressedDispatcher
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricPrompt
@@ -15,7 +18,6 @@ import org.json.JSONTokener
 import java.math.RoundingMode
 import java.net.URL
 import java.text.DecimalFormat
-import java.util.concurrent.Executor
 
 
 class MainFragment : Fragment() {
@@ -31,14 +33,23 @@ class MainFragment : Fragment() {
         (activity as AppCompatActivity).supportActionBar?.show()
 
 
-
-        /*binding.btnTransfer.setOnClickListener {
-            findNavController().navigate(R.id.action_mainFragment_to_transferFragment)
-        }*/
-
-        /*binding.btnNFC.setOnClickListener {
-            findNavController().navigate(R.id.action_mainFragment_to_nfcFragment)
-        }*/
+        activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, object :OnBackPressedCallback(true){
+            @Override
+            override fun handleOnBackPressed() {
+                val builder: AlertDialog.Builder = AlertDialog.Builder(activity, R.style.CustomAlertDialog)
+                builder
+                    .setMessage("Do you want exit from RiplleFlow?")
+                    .setPositiveButton("YES",
+                        DialogInterface.OnClickListener { dialog, i -> activity?.finish() })
+                    .setNegativeButton("NO",
+                        DialogInterface.OnClickListener { dialog, i -> dialog.cancel() })
+                val alertDialog: AlertDialog = builder.create()
+                alertDialog.show()
+            }
+                //setEnabled(false); // call this to disable listener
+                //remove(); // call to remove listener
+                //Toast.makeText(getContext(), "Listing for back press from this fragment", Toast.LENGTH_SHORT).show();
+        });
 
         return binding.root
     }
@@ -46,7 +57,7 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        convertToDollars("1")
+//        convertToDollars("1")
 
         binding.btnNFC.setOnClickListener {
             findNavController().navigate(R.id.action_mainFragment_to_nfcFragment)

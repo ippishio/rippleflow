@@ -85,7 +85,7 @@
         <action
             android:id="@+id/action_createPinCodeFragment_to_mainFragment"
             app:destination="@id/mainFragment"
-            app:popUpTo="@id/registrationFragment"
+            app:popUpTo="@id/createPinCodeFragment"
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
