@@ -31,7 +31,7 @@ class ProfileFragm : Fragment() {
         _binding = FragmentProfile2Binding.inflate(inflater, container, false)
         preferencesKEY = activity?.getSharedPreferences(APP_PREFERENCES_KEY, Context.MODE_PRIVATE)!!
         preferencesPIN = activity?.getSharedPreferences(APP_PREFERENCES_PIN, Context.MODE_PRIVATE)!!
-        address = "lsakdjfjf12oiupiofu9o287cn0948yrnoi1u3"
+        address = XRPL(preferencesKEY.getString(APP_PREFERENCES_KEY, "")!!).address.toString()
         binding.btnChangePIN.setOnClickListener {
             BottomSheetChangePINFragment().show(requireFragmentManager(), "SS")
         }
