@@ -31,6 +31,9 @@
             app:exitAnim="@android:anim/fade_out"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_mainFragment_to_qrFragment"
+            app:destination="@id/qrFragment" />
     </fragment>
     <fragment
         android:id="@+id/transferFragment"
@@ -99,5 +102,14 @@
         <action
             android:id="@+id/action_profileFragm_to_registrationFragment"
             app:destination="@id/registrationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/qrFragment"
+        android:name="com.wallet.rippleflow.qrFragment"
+        android:label="fragment_qr"
+        tools:layout="@layout/fragment_qr" >
+        <action
+            android:id="@+id/action_qrFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
     </fragment>
 </navigation>

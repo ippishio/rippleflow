@@ -62,6 +62,9 @@ class MainFragment : Fragment() {
         binding.btnTransfer.setOnClickListener {
             findNavController().navigate(R.id.action_mainFragment_to_transferFragment)
         }
+        binding.btnQR.setOnClickListener {
+            findNavController().navigate(R.id.action_mainFragment_to_qrFragment)
+        }
     }
 
     fun convertToDollars(balance: String){
