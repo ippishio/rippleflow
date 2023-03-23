@@ -45,7 +45,6 @@ class qrFragment : Fragment() {
         if (result != null) {
             var mytoast = Toast.makeText(this.activity, result.contents, Toast.LENGTH_SHORT)
             mytoast.show()
-
         } else {
 
             // This is important, otherwise the result will not be passed to the fragment

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import com.wallet.rippleflow.databinding.FragmentNfcBinding
 
@@ -28,6 +29,7 @@ class NfcFragment : Fragment() {
 
         binding.btnGO.setOnClickListener {
             BottomSheetNFCFragment().show(requireFragmentManager(), "NFCtag")
+
         }
         setHasOptionsMenu(true)
     }
@@ -39,6 +41,4 @@ class NfcFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
-
 }
