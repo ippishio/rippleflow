@@ -2,14 +2,10 @@ package com.wallet.rippleflow
 
 import android.annotation.SuppressLint
 import android.graphics.drawable.AnimationDrawable
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
-import android.widget.ImageView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.wallet.rippleflow.databinding.FragmentBottomSheetNfcBinding
 
@@ -32,13 +28,14 @@ class BottomSheetNFCFragment: BottomSheetDialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentBottomSheetNfcBinding.inflate(inflater, container, false)
+        /*
         var anim: AnimationDrawable
         val rocketImage = binding.imageView13.apply {
-            setBackgroundResource(R.drawable.nfc_animation)
+            setBackgroundResource(R.drawable.nfcanimation)
             anim = background as AnimationDrawable
         }
         anim.start()
-
+        */
         return binding.root
     }
 

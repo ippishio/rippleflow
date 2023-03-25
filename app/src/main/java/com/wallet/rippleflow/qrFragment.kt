@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.google.zxing.integration.android.IntentIntegrator
 import com.wallet.rippleflow.databinding.FragmentQrBinding
 
@@ -42,13 +43,14 @@ class qrFragment : Fragment() {
     @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, intent: Intent?) {
         val result = IntentIntegrator.parseActivityResult(resultCode, intent)
-        if (result != null) {
+        if (result.contents != null) {
             var mytoast = Toast.makeText(this.activity, result.contents, Toast.LENGTH_SHORT)
             mytoast.show()
+            findNavController().navigate(R.id.action_qrFragment_to_mainFragment)
         } else {
-
+            findNavController().navigate(R.id.action_qrFragment_to_mainFragment)
             // This is important, otherwise the result will not be passed to the fragment
-            super.onActivityResult(requestCode, resultCode, intent)
+            //super.onActivityResult(requestCode, resultCode, intent)
         }
     }
 

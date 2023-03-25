@@ -53,7 +53,8 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        convertToDollars("1")
+
+        convertToDollars("1")
 
         binding.btnNFC.setOnClickListener {
             findNavController().navigate(R.id.action_mainFragment_to_nfcFragment)
@@ -79,9 +80,10 @@ class MainFragment : Fragment() {
                     val df = DecimalFormat("#.##")
                     df.roundingMode = RoundingMode.DOWN
                     ansT = df.format(jsonObject.getString("price").toFloat() * balance.toFloat())
-
-                    binding.textViewDollarXRPAmount.text = "$$ansT USD"
-//                    balanceDollarsVal = jsonObject.getString("price").toFloat() * balance.toFloat()
+                    try {
+                        binding.textViewDollarXRPAmount.text = "$$ansT USD"
+                    } catch (e:java.lang.NullPointerException){}
+                    //balanceDollarsVal = jsonObject.getString("price").toFloat() * balance.toFloat()
                 }
             }
         }.start()
