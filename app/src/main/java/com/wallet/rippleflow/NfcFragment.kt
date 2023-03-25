@@ -29,7 +29,6 @@ class NfcFragment : Fragment() {
 
         binding.btnGO.setOnClickListener {
             BottomSheetNFCFragment().show(requireFragmentManager(), "NFCtag")
-
         }
         setHasOptionsMenu(true)
     }
