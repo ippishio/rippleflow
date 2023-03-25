@@ -28,14 +28,7 @@ class BottomSheetNFCFragment: BottomSheetDialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentBottomSheetNfcBinding.inflate(inflater, container, false)
-        /*
-        var anim: AnimationDrawable
-        val rocketImage = binding.imageView13.apply {
-            setBackgroundResource(R.drawable.nfcanimation)
-            anim = background as AnimationDrawable
-        }
-        anim.start()
-        */
+
         return binding.root
     }
 
