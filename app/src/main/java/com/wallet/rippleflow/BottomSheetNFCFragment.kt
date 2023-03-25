@@ -1,25 +1,27 @@
 package com.wallet.rippleflow
 
+import android.annotation.SuppressLint
+import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.wallet.rippleflow.databinding.FragmentBottomSheetNfcBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.wallet.rippleflow.databinding.FragmentBottomSheetNfcBinding
+
 
 class BottomSheetNFCFragment: BottomSheetDialogFragment() {
     private lateinit var binding: FragmentBottomSheetNfcBinding
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val activity = requireActivity()
-        println("SDFSDF")
 //        binding.btnGO.setOnClickListener {
 //            pushNFC()
 //        }
         //TODO Like something connecting with nfc
     }
 
+    @SuppressLint("ResourceType")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
