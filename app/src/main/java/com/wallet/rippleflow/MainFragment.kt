@@ -83,7 +83,6 @@ class MainFragment : Fragment() {
                     try {
                         binding.textViewDollarXRPAmount.text = "$$ansT USD"
                     } catch (e:java.lang.NullPointerException){}
-                    //balanceDollarsVal = jsonObject.getString("price").toFloat() * balance.toFloat()
                 }
             }
         }.start()
