@@ -23,6 +23,9 @@ class XRPL(secretKey: String = "") {
     val address = keyPair.publicKey().deriveAddress();
     var signatureService = BcSignatureService()
     var feeResult = xrplClient.fee()
+    fun getAddress(): String{
+        return address.toString()
+    }
     fun getBalance(): Long {
         val requestParams = AccountInfoRequestParams.of(address)
         val accountInfoResult = xrplClient.accountInfo(requestParams)
