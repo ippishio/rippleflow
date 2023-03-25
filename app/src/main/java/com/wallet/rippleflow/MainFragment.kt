@@ -1,10 +1,14 @@
 package com.wallet.rippleflow
 
 import android.app.AlertDialog
+import android.content.Context
 import android.content.DialogInterface
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.*
+import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
+import androidx.annotation.UiThread
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -27,7 +31,16 @@ class MainFragment : Fragment() {
     ): View? {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
         (activity as AppCompatActivity).supportActionBar?.show()
-
+        var view1: TextView = binding.textViewXRPAmount
+        var preferences: SharedPreferences = activity?.getSharedPreferences(APP_PREFERENCES_KEY, Context.MODE_PRIVATE)!!
+            Thread {
+                var ans = (XRPL(preferences.getString(APP_PREFERENCES_KEY, "")!!).getBalance()/1000000f).toString()
+                println(ans)
+                activity?.runOnUiThread {
+                    view1.setText(ans)
+                    convertToDollars(ans)
+                }
+            }.start()
 
         activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, object :OnBackPressedCallback(true){
             @Override
@@ -53,8 +66,10 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         convertToDollars("1")
         // Ilyas, fix this
+
 
         binding.btnNFC.setOnClickListener {
             findNavController().navigate(R.id.action_mainFragment_to_nfcFragment)
