@@ -28,26 +28,28 @@
         android:id="@+id/linearLayoutCompat2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="160dp"
+        android:layout_marginTop="130dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
+        <ImageView
+            android:id="@+id/imageView14"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/xrpicon"
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayoutCompat2"
+            app:layout_constraintEnd_toStartOf="@+id/linearLayoutCompat2" />
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textViewXRPAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
             android:text="1"
-            android:textSize="30dp" />
+            android:textSize="18pt" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="XRP"
-            android:textSize="30dp"
-            app:layout_constraintStart_toEndOf="@+id/textViewXRPAmount"
-            tools:layout_editor_absoluteY="0dp" />
+
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -92,8 +94,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
             app:cornerRadius="10dp"
-            android:textSize="5pt"
-            android:text="Transfer by address" />
+            android:textSize="10pt"
+            android:text="Address" />
 
         <Button
             android:id="@+id/btnNFC"
@@ -101,8 +103,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
             app:cornerRadius="10dp"
-            android:textSize="5pt"
-            android:text="Transfer by NFC" />
+            android:textSize="10pt"
+            android:text="NFC" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -119,8 +121,8 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:text="Transfer by QR-code"
-            android:textSize="5pt"
+            android:text="QR-code"
+            android:textSize="10pt"
             app:cornerRadius="10dp" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
@@ -141,6 +143,20 @@
         android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="Transfer"
+        android:textColor="#838383"
+        android:textSize="12pt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat3" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
