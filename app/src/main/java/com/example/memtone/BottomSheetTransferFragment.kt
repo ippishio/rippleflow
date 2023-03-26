@@ -49,15 +49,6 @@ class BottomSheetTransferFragment: BottomSheetDialogFragment(){
 
         println(contact)
 
-        /*CoroutineScope(Dispatchers.IO).launch {
-            val db = Room.databaseBuilder(
-                requireContext().applicationContext,
-                ContactDatabase::class.java,
-                "contact-database"
-            ).build()
-            db.ContactDao().addContact(contact)
-        }*/
-
         dismiss()
     }
 
