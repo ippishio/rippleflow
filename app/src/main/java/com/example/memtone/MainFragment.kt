@@ -48,7 +48,6 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        convertToDollars("1")
         binding.btnNFC.setOnClickListener {
             findNavController().navigate(R.id.action_mainFragment_to_nfcFragment)
         }
