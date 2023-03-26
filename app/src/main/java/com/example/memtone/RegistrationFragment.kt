@@ -29,7 +29,6 @@ class RegistrationFragment : Fragment() {
         preferences = activity?.getSharedPreferences(APP_PREFERENCES_KEY, Context.MODE_PRIVATE)!!
         (activity as AppCompatActivity).supportActionBar?.setHomeButtonEnabled(false)
 
-
         binding.btnLogin.setOnClickListener {
 
             val key = binding.editTextKey.text.toString()
@@ -61,6 +60,10 @@ class RegistrationFragment : Fragment() {
 
     fun validAccount(key: String) : Boolean {
         // TODO CHECKING ACCOUNT VALIDATION
+        if(key.isEmpty()) {
+            Toast.makeText(context, "key cannot be empty", Toast.LENGTH_SHORT).show()
+            return false
+        }
         return true
     }
 

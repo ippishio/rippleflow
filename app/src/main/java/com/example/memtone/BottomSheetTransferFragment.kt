@@ -4,11 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.example.memtone.databinding.FragmentBottomSheetTransferBinding
+import com.example.memtone.model.Contact
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class BottomSheetTransferFragment: BottomSheetDialogFragment() {
+class BottomSheetTransferFragment: BottomSheetDialogFragment(){
     private lateinit var binding: FragmentBottomSheetTransferBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -35,7 +35,24 @@ class BottomSheetTransferFragment: BottomSheetDialogFragment() {
         //TODO
         binding.editTextName.setText("")
         binding.editTextAddress.setText("")
-        Toast.makeText(activity, name, Toast.LENGTH_SHORT).show()
+        val contact = Contact(
+            id = 0,
+            name = name,
+            address = address
+        )
+        println(contact)
+
+        /*CoroutineScope(Dispatchers.IO).launch {
+            val db = Room.databaseBuilder(
+                requireContext().applicationContext,
+                ContactDatabase::class.java,
+                "contact-database"
+            ).build()
+            db.ContactDao().addContact(contact)
+        }*/
+
         dismiss()
     }
+
+
 }

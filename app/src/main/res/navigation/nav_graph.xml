@@ -96,5 +96,13 @@
         <action
             android:id="@+id/action_profileFragm_to_registrationFragment"
             app:destination="@id/registrationFragment" />
+        <action
+            android:id="@+id/action_profileFragm_to_transactionsHistoryFragment"
+            app:destination="@id/transactionsHistoryFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/transactionsHistoryFragment"
+        android:name="com.example.memtone.TransactionsHistoryFragment"
+        android:label="Transactions"
+        tools:layout="@layout/fragment_transactions_history" />
 </navigation>
