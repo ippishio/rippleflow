@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.memtone.MainFragment"
+        android:name="com.wallet.rippleflow.MainFragment"
         android:label="RippleFlow"
         tools:layout="@layout/fragment_main">
         <action
@@ -30,7 +30,7 @@
     </fragment>
     <fragment
         android:id="@+id/transferFragment"
-        android:name="com.example.memtone.TransferFragment"
+        android:name="com.wallet.rippleflow.TransferFragment"
         android:label="Transfer"
         tools:layout="@layout/fragment_transfer">
         <action
@@ -42,7 +42,7 @@
     </fragment>
     <fragment
         android:id="@+id/nfcFragment"
-        android:name="com.example.memtone.NfcFragment"
+        android:name="com.wallet.rippleflow.NfcFragment"
         android:label="Transfer by NFC"
         tools:layout="@layout/fragment_nfc">
         <action
@@ -54,12 +54,12 @@
     </fragment>
     <fragment
         android:id="@+id/zaebokFragment"
-        android:name="com.example.memtone.ZaebokFragment"
+        android:name="com.wallet.rippleflow.ZaebokFragment"
         android:label="fragment_zaebok"
         tools:layout="@layout/fragment_zaebok" />
     <fragment
         android:id="@+id/pinCodeFragment"
-        android:name="com.example.memtone.PinCodeFragment"
+        android:name="com.wallet.rippleflow.PinCodeFragment"
         android:label="fragment_pin_code"
         tools:layout="@layout/fragment_pin_code" >
         <action
@@ -70,7 +70,7 @@
     </fragment>
     <fragment
         android:id="@+id/registrationFragment"
-        android:name="com.example.memtone.RegistrationFragment"
+        android:name="com.wallet.rippleflow.RegistrationFragment"
         android:label="fragment_registration"
         tools:layout="@layout/fragment_registration" >
         <action
@@ -79,7 +79,7 @@
     </fragment>
     <fragment
         android:id="@+id/createPinCodeFragment"
-        android:name="com.example.memtone.CreatePinCodeFragment"
+        android:name="com.wallet.rippleflow.CreatePinCodeFragment"
         android:label="fragment_create_pin_code"
         tools:layout="@layout/fragment_create_pin_code" >
         <action
@@ -90,7 +90,7 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragm"
-        android:name="com.example.memtone.ProfileFragm"
+        android:name="com.wallet.rippleflow.ProfileFragm"
         android:label="Profile"
         tools:layout="@layout/fragment_profile2">
         <action
@@ -102,7 +102,7 @@
     </fragment>
     <fragment
         android:id="@+id/transactionsHistoryFragment"
-        android:name="com.example.memtone.TransactionsHistoryFragment"
+        android:name="com.wallet.rippleflow.TransactionsHistoryFragment"
         android:label="Transactions"
         tools:layout="@layout/fragment_transactions" />
 </navigation>
