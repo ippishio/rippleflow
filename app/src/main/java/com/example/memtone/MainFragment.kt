@@ -30,7 +30,7 @@ class MainFragment : Fragment() {
             override fun handleOnBackPressed() {
                 val builder: AlertDialog.Builder = AlertDialog.Builder(activity, R.style.CustomAlertDialog)
                 builder
-                    .setMessage("Do you want exit from RiplleFlow?")
+                    .setMessage("Do you want to exit from RippleFlow?")
                     .setPositiveButton("YES",
                         DialogInterface.OnClickListener { dialog, i -> activity?.finish() })
                     .setNegativeButton("NO",
