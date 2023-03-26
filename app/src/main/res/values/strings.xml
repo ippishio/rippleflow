@@ -6,7 +6,12 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>w
     <string name="previous">Previous</string>
-
+    <string name="servicedesc">servicedesc</string>
+    <string name="aiddescription">aiddescription</string>
+    <string name="ad_nfcTurnOn_pos">Turn on</string>
+    <string name="ad_nfcTurnOn_neg">Dismiss</string>
+    <string name="ad_nfcTurnOn_title">NFC is turned off.</string>
+    <string name="ad_nfcTurnOn_message">You need turn on NFC module for scanning. Wish turn on it now?</string>
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
         volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
