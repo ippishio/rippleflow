@@ -10,5 +10,5 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class App : Application(){
-    val contactService: ContactService = ContactService()
+//    val contactService: ContactService = ContactService()
 }

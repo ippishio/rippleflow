@@ -1,20 +1,21 @@
 package com.example.memtone.model
 
-import android.app.Application
-import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.LiveData
 import com.github.javafaker.Faker
 
 typealias ContactsListener = (contacts : List<Contact>) -> Unit
 
 
-class ContactService {
-    private var contacts = mutableListOf<Contact>()
+class ContactService(
+    private var contacts: MutableList<Contact>
+        ){
+//    private var contacts = mutableListOf<Contact>()
 
     private val listeners = mutableListOf<ContactsListener>()
 
     private lateinit var contactsDao: TransactionDao
 
-    init {
+    /*init {
         val faker = Faker.instance()
         contacts = (1..50).map {
             Contact(
@@ -22,7 +23,7 @@ class ContactService {
                 address = faker.address().streetName()
             )
         }.toMutableList()
-    }
+    }*/
 
     fun getContacts() : List<Contact> {
         return contacts

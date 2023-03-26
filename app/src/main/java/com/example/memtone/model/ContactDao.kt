@@ -1,5 +1,6 @@
 package com.example.memtone.model
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Dao
@@ -8,7 +9,7 @@ interface ContactDao {
     suspend fun addContact(contact: Contact)
 
     @Query("SELECT * FROM contact")
-    suspend fun getAllContact() : List<Contact>
+    fun getAllContact() : List<Contact>
 
     @Delete
     suspend fun deleteContact(contact: Contact)

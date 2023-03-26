@@ -7,14 +7,13 @@ import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.memtone.databinding.FragmentTransferBinding
 import com.example.memtone.model.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 class TransferFragment : Fragment() {
 
@@ -23,19 +22,18 @@ class TransferFragment : Fragment() {
 
     private lateinit var adapter: ContactsAdapter
 
-    private val contactService: ContactService
-        get() = (activity?.applicationContext as App).contactService
+    private lateinit var contactService: ContactService
 
     private lateinit var contactDao: ContactDao
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentTransferBinding.inflate(inflater, container, false)
 
-       /* val contactDao = RVDatabase.getInstance(requireContext()).ContactDao()
-        CoroutineScope(Dispatchers.Main).launch {
+        val contactDao = RVDatabase.getInstance(requireContext()).ContactDao()
+
+        /*CoroutineScope(Dispatchers.Main).launch {
             contactDao.addContact(Contact(
                 name = "SDFSF",
                 address = "1231231"
@@ -64,12 +62,24 @@ class TransferFragment : Fragment() {
             }
         })
 
+        var mutableList: MutableList<Contact> = mutableListOf(
+            Contact(name= "ONE", address = "ONEADDRESS")
+        )
+        mutableList.add(Contact(
+            name = "SHESH",
+            address = "ILY"
+        ))
+        contactService = ContactService(
+            mutableList
+        )
         val layoutManager = LinearLayoutManager(context)
         adapter.contacts = contactService.getContacts()
         binding.recyclerViewContacts.layoutManager = layoutManager
         binding.recyclerViewContacts.adapter = adapter
 
         contactService.addListener(contactsListener)
+
+
 
         binding.recyclerViewContacts.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
