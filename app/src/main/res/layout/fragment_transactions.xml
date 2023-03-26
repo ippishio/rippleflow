@@ -7,21 +7,10 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".TransactionsHistoryFragment">
 
-   <!-- <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewTransactionHistory"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewTransactions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/item_transaction_history" />
--->
-
-    <TextView
-        android:id="@+id/listTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="example"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:listitem="@layout/item_transaction" />
 </androidx.constraintlayout.widget.ConstraintLayout>

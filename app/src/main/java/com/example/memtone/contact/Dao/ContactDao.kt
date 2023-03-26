@@ -1,7 +1,8 @@
-package com.example.memtone.model
+package com.example.memtone.contact.Dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.example.memtone.contact.Model.Contact
 
 @Dao
 interface ContactDao {

@@ -1,4 +1,6 @@
-package com.example.memtone.model
+package com.example.memtone.contact
+
+import com.example.memtone.contact.Model.Contact
 
 interface ContactActionListener {
 

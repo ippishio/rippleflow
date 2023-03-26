@@ -1,9 +1,13 @@
-package com.example.memtone.model
+package com.example.memtone
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.memtone.contact.Dao.ContactDao
+import com.example.memtone.contact.Model.Contact
+import com.example.memtone.transaction.Model.Transaction
+import com.example.memtone.transaction.Dao.TransactionDao
 
 @Database(
     entities = [Contact::class,  Transaction::class],
@@ -21,7 +25,7 @@ abstract class RVDatabase: RoomDatabase() {
         @Volatile
         private var instance: RVDatabase? = null
 
-        fun getInstance(context: Context): RVDatabase=
+        fun getInstance(context: Context): RVDatabase =
             instance ?: synchronized(this) {
                 instance ?: buildDatabase(context).also { instance = it }
             }

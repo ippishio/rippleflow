@@ -104,5 +104,5 @@
         android:id="@+id/transactionsHistoryFragment"
         android:name="com.example.memtone.TransactionsHistoryFragment"
         android:label="Transactions"
-        tools:layout="@layout/fragment_transactions_history" />
+        tools:layout="@layout/fragment_transactions" />
 </navigation>

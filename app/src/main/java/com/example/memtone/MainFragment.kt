@@ -38,9 +38,6 @@ class MainFragment : Fragment() {
                 val alertDialog: AlertDialog = builder.create()
                 alertDialog.show()
             }
-                //setEnabled(false); // call this to disable listener
-                //remove(); // call to remove listener
-                //Toast.makeText(getContext(), "Listing for back press from this fragment", Toast.LENGTH_SHORT).show();
         });
 
 
@@ -66,21 +63,6 @@ class MainFragment : Fragment() {
     override fun onResume() {
         super.onResume()
     }
-
-    private fun convertToDollars(balance: String) {
-        var ansT: String? = null
-        var ans: String?
-        ans = URL("https://api3.binance.com/api/v3/avgPrice?symbol=XRPUSDT").readText()
-        if(ans != null) {
-            val jsonObject = JSONTokener(ans).nextValue() as JSONObject
-            val df = DecimalFormat("#.##")
-            df.roundingMode = RoundingMode.DOWN
-            ansT = df.format(jsonObject.getString("price").toFloat() * balance.toFloat())
-            binding.textViewDollarXRPAmount.text = "$$ansT USD"
-            //                    balanceDollarsVal = jsonObject.getString("price").toFloat() * balance.toFloat()
-        }
-    }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

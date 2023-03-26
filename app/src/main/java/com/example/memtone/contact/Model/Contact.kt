@@ -1,4 +1,4 @@
-package com.example.memtone.model
+package com.example.memtone.contact.Model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

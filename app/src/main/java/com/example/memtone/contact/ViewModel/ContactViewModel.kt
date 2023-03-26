@@ -1,8 +1,10 @@
-package com.example.memtone.model
+package com.example.memtone.contact.ViewModel
 
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import com.example.memtone.contact.Repository.ContactReposity
+import com.example.memtone.contact.Model.Contact
 
 class ContactViewModel: ViewModel() {
     fun insert(context: Context, contact: Contact) =

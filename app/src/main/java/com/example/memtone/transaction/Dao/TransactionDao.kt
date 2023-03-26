@@ -1,6 +1,8 @@
-package com.example.memtone.model
+package com.example.memtone.transaction.Dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.example.memtone.transaction.Model.Transaction
 
 @Dao
 interface TransactionDao {
@@ -8,7 +10,7 @@ interface TransactionDao {
     suspend fun addTransaction(transaction: Transaction)
 
     @Query("SELECT * FROM transactions")
-    suspend fun getAllTransaction() : List<Transaction>
+    fun getAllTransaction() : LiveData<List<Transaction>>
 
     @Delete
     suspend fun deleteTransaction(transaction: Transaction)

@@ -13,7 +13,7 @@ import androidx.core.content.ContextCompat.getSystemService
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.memtone.databinding.FragmentProfile2Binding
-import com.example.memtone.model.ContactViewModel
+import com.example.memtone.contact.ViewModel.ContactViewModel
 
 
 class ProfileFragm : Fragment() {

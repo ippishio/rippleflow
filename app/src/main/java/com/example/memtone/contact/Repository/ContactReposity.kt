@@ -1,7 +1,9 @@
-package com.example.memtone.model
+package com.example.memtone.contact.Repository
 
 import android.content.Context
 import androidx.lifecycle.LiveData
+import com.example.memtone.contact.Model.Contact
+import com.example.memtone.RVDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
@@ -9,7 +11,7 @@ import kotlinx.coroutines.launch
 class ContactReposity {
 
     companion object {
-        var rvdatabase: RVDatabase ?= null
+        var rvdatabase: RVDatabase?= null
 
         private fun initDB(context: Context) : RVDatabase {
             return RVDatabase.getInstance(context)

@@ -1,4 +1,4 @@
-package com.example.memtone.model
+package com.example.memtone.transaction.Model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

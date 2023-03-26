@@ -4,11 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.memtone.databinding.FragmentBottomSheetTransferBinding
-import com.example.memtone.model.Contact
-import com.example.memtone.model.ContactViewModel
+import com.example.memtone.contact.Model.Contact
+import com.example.memtone.contact.ViewModel.ContactViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class BottomSheetTransferFragment: BottomSheetDialogFragment(){
@@ -44,6 +43,7 @@ class BottomSheetTransferFragment: BottomSheetDialogFragment(){
             name = name,
             address = address
         )
+
         contactViewModel = ViewModelProvider(this).get(ContactViewModel::class.java)
         contactViewModel.insert(requireContext(), contact)
 

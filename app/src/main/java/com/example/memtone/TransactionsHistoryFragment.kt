@@ -6,36 +6,66 @@ import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
-import androidx.room.Dao
-import androidx.room.Room
-import com.example.memtone.databinding.FragmentTransactionsHistoryBinding
-import com.example.memtone.model.RVDatabase
-import com.example.memtone.model.Transaction
-import com.example.memtone.model.TransactionDao
+import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.memtone.databinding.FragmentTransactionsBinding
+import com.example.memtone.transaction.Adapter.TransactionsAdapter
+import com.example.memtone.transaction.Dao.TransactionDao
+import com.example.memtone.transaction.Model.Transaction
+import com.example.memtone.transaction.TransactionActionListener
+import com.example.memtone.transaction.ViewModel.TransactionViewModel
 
 
 class TransactionsHistoryFragment : Fragment() {
 
-    private var _binding : FragmentTransactionsHistoryBinding? = null
+    private var _binding : FragmentTransactionsBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var transactionDao: TransactionDao
+    private lateinit var transactionAdapter: TransactionsAdapter
+    private lateinit var transactionViewModel: TransactionViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentTransactionsHistoryBinding.inflate(inflater, container, false)
+        _binding = FragmentTransactionsBinding.inflate(inflater, container, false)
 
-        transactionDao = RVDatabase.getInstance(requireContext()).TransactionDao()
 
-/*        transactionDao.addTransaction(
-            Transaction(
-                address = "address",
-                date = "21 september",
-                sum = "2+2=5"
-            )
-        )*/
+        transactionViewModel = ViewModelProvider(this).get(TransactionViewModel::class.java)
+
+        transactionViewModel.insert(requireContext(), Transaction(
+            address = "S:LDKJFS:LDF",
+            date = "21.05.2020",
+            sum = "9999XRP"
+        )
+        )
+
+        transactionViewModel.getAllTransactionData(requireContext()).observe(viewLifecycleOwner, Observer {
+            transactionAdapter.setData(it as ArrayList<Transaction>)
+        })
+
+        transactionAdapter = TransactionsAdapter(
+            requireContext(),
+            object : TransactionActionListener{
+                override fun onTransactionClick(transaction: Transaction) {
+                    Toast.makeText(requireContext(), "TOTO", Toast.LENGTH_SHORT).show()
+                }
+                override fun onTransactionMoreClick(transaction: Transaction) {
+                    Toast.makeText(requireContext(), "SDFS", Toast.LENGTH_SHORT).show()
+                    transactionViewModel.deleteTransaction(requireContext(), transaction)
+                }
+            },
+            transactions = ArrayList<Transaction>()
+        )
+
+        binding.recyclerViewTransactions.apply {
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = transactionAdapter
+        }
 
         setHasOptionsMenu(true)
         return binding.root

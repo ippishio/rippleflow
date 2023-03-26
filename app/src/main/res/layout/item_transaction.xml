@@ -31,6 +31,19 @@
         android:layout_height="wrap_content"
         android:text="01.01.2022"
         android:textSize="12dp"
+        android:layout_marginRight="12dp"
+        app:layout_constraintEnd_toStartOf="@+id/moreImageViewButton"
+        app:layout_constraintTop_toTopOf="@+id/moreImageViewButton" />
+
+
+    <ImageView
+        android:id="@+id/moreImageViewButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:padding="6dp"
+        android:src="@drawable/baseline_more_vert_24"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>

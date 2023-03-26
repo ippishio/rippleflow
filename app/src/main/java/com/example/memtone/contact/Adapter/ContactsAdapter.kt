@@ -1,4 +1,4 @@
-package com.example.memtone
+package com.example.memtone.contact.Adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,11 +6,11 @@ import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.example.memtone.R
+import com.example.memtone.contact.ContactActionListener
 import com.example.memtone.databinding.ItemContactBinding
-import com.example.memtone.model.Contact
-import com.example.memtone.model.ContactActionListener
+import com.example.memtone.contact.Model.Contact
 
 
 class ContactsAdapter(private val context: Context,
@@ -27,14 +27,6 @@ class ContactsAdapter(private val context: Context,
         binding.moreImageViewButton.setOnClickListener(this)
         return ContactsViewHolder(binding)
     }
-
-/*    var contacts: List<Contact> = emptyList()
-        set(newValue) {
-            field = newValue
-            notifyDataSetChanged()
-        }vkk*/
-
-
 
     override fun onClick(v : View) {
         val contact = v.tag as Contact

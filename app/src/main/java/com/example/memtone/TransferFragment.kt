@@ -6,24 +6,23 @@ import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.memtone.databinding.FragmentTransferBinding
-import com.example.memtone.model.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import com.example.memtone.contact.*
+import com.example.memtone.contact.Adapter.ContactsAdapter
+import com.example.memtone.contact.Model.Contact
+import com.example.memtone.contact.ViewModel.ContactViewModel
 
 class TransferFragment : Fragment() {
 
     private var _binding : FragmentTransferBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var adapterv: ContactsAdapter
+    private lateinit var contactsAdapter: ContactsAdapter
     private lateinit var contactViewModel: ContactViewModel
 
     override fun onCreateView(
@@ -60,10 +59,10 @@ class TransferFragment : Fragment() {
 
         contactViewModel = ViewModelProvider(this).get(ContactViewModel::class.java)
         contactViewModel.getAllContactData(requireContext()).observe(viewLifecycleOwner, Observer {
-            adapterv.setData(it as ArrayList<Contact>)
+            contactsAdapter.setData(it as ArrayList<Contact>)
         })
 
-        adapterv = ContactsAdapter(
+        contactsAdapter = ContactsAdapter(
             requireContext(),
             object : ContactActionListener{
                 override fun onContactClick(contact: Contact) {
@@ -81,7 +80,7 @@ class TransferFragment : Fragment() {
         binding.recyclerViewContacts.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(requireContext())
-            adapter = adapterv
+            adapter = contactsAdapter
         }
 
         setHasOptionsMenu(true)
