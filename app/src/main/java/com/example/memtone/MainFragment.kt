@@ -45,7 +45,7 @@ class MainFragment : Fragment() {
         return binding.root
     }
 
-    override  fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
 //        convertToDollars("1")
