@@ -4,12 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.example.memtone.databinding.FragmentBottomSheetTransferBinding
 import com.example.memtone.model.Contact
+import com.example.memtone.model.ContactViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class BottomSheetTransferFragment: BottomSheetDialogFragment(){
     private lateinit var binding: FragmentBottomSheetTransferBinding
+    private lateinit var contactViewModel: ContactViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -40,6 +44,9 @@ class BottomSheetTransferFragment: BottomSheetDialogFragment(){
             name = name,
             address = address
         )
+        contactViewModel = ViewModelProvider(this).get(ContactViewModel::class.java)
+        contactViewModel.insert(requireContext(), contact)
+
         println(contact)
 
         /*CoroutineScope(Dispatchers.IO).launch {

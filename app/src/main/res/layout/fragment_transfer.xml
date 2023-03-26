@@ -70,14 +70,6 @@
         android:layout_marginBottom="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/linearLayoutCompat4" />
-<!--
-
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/btnFabAddContact"
-        app:layout_constraintTop_toBottomOf="@id/btnSend">
--->
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -89,18 +81,6 @@
         app:layout_constraintTop_toBottomOf="@+id/btnSend"
         tools:listitem="@layout/item_contact" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tvText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="testMaterial"
-        app:layout_constraintBottom_toTopOf="@+id/btnFabAddContact"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnSend" />
-
-
-<!--    </androidx.appcompat.widget.LinearLayoutCompat>-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

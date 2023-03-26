@@ -1,29 +1,23 @@
 package com.example.memtone
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.memtone.databinding.ItemContactBinding
 import com.example.memtone.model.Contact
+import com.example.memtone.model.ContactActionListener
 
-interface ContactActionListener {
-   fun onContactClick(contact: Contact)
 
-   fun onContactMoreClick(contact: Contact)
-}
-
-class ContactsAdapter(private val actionListener: ContactActionListener):
+class ContactsAdapter(private val context: Context,
+                      private val actionListener: ContactActionListener,
+                      private var contacts: ArrayList<Contact>):
     RecyclerView.Adapter<ContactsAdapter.ContactsViewHolder>(),
     View.OnClickListener {
-
-    var contacts: List<Contact> = emptyList()
-        set(newValue) {
-            field = newValue
-            notifyDataSetChanged()
-        }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactsViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -33,6 +27,14 @@ class ContactsAdapter(private val actionListener: ContactActionListener):
         binding.moreImageViewButton.setOnClickListener(this)
         return ContactsViewHolder(binding)
     }
+
+/*    var contacts: List<Contact> = emptyList()
+        set(newValue) {
+            field = newValue
+            notifyDataSetChanged()
+        }vkk*/
+
+
 
     override fun onClick(v : View) {
         val contact = v.tag as Contact
@@ -44,6 +46,11 @@ class ContactsAdapter(private val actionListener: ContactActionListener):
                 actionListener.onContactClick(contact)
             }
         }
+    }
+
+    fun setData(contacts: ArrayList<Contact>) {
+        this.contacts = contacts
+        notifyDataSetChanged()
     }
 
     private fun showPopupMenu(v: View) {

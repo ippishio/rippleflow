@@ -14,34 +14,23 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.memtone.databinding.FragmentTransferBinding
 import com.example.memtone.model.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class TransferFragment : Fragment() {
 
     private var _binding : FragmentTransferBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var adapter: ContactsAdapter
+    private lateinit var adapterv: ContactsAdapter
+    private lateinit var contactViewModel: ContactViewModel
 
-    private lateinit var contactService: ContactService
-
-    private lateinit var contactDao: ContactDao
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentTransferBinding.inflate(inflater, container, false)
-
-        val contactDao = RVDatabase.getInstance(requireContext()).ContactDao()
-
-        /*CoroutineScope(Dispatchers.Main).launch {
-            contactDao.addContact(Contact(
-                name = "SDFSF",
-                address = "1231231"
-            ))
-            contactDao.getAllContact().forEach {
-                binding.tvText.append("\n" + it.id)
-            }
-        }*/
 
         binding.btnSend.setOnClickListener {
             findNavController().navigate(R.id.action_transferFragment_to_zaebokFragment)
@@ -50,36 +39,6 @@ class TransferFragment : Fragment() {
         binding.btnFabAddContact.setOnClickListener {
             BottomSheetTransferFragment().show(fragmentManager!!, "newContactTag")
         }
-
-        adapter = ContactsAdapter(object : ContactActionListener{
-            override fun onContactClick(contact: Contact) {
-                findNavController().navigate(R.id.action_transferFragment_to_zaebokFragment)
-               Toast.makeText(context, "TO ${contact.address}", Toast.LENGTH_SHORT).show()
-            }
-
-            override fun onContactMoreClick(contact: Contact) {
-                contactService.deleteContact(contact)
-            }
-        })
-
-        var mutableList: MutableList<Contact> = mutableListOf(
-            Contact(name= "ONE", address = "ONEADDRESS")
-        )
-        mutableList.add(Contact(
-            name = "SHESH",
-            address = "ILY"
-        ))
-        contactService = ContactService(
-            mutableList
-        )
-        val layoutManager = LinearLayoutManager(context)
-        adapter.contacts = contactService.getContacts()
-        binding.recyclerViewContacts.layoutManager = layoutManager
-        binding.recyclerViewContacts.adapter = adapter
-
-        contactService.addListener(contactsListener)
-
-
 
         binding.recyclerViewContacts.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -99,17 +58,38 @@ class TransferFragment : Fragment() {
             }
         })
 
+        contactViewModel = ViewModelProvider(this).get(ContactViewModel::class.java)
+        contactViewModel.getAllContactData(requireContext()).observe(viewLifecycleOwner, Observer {
+            adapterv.setData(it as ArrayList<Contact>)
+        })
+
+        adapterv = ContactsAdapter(
+            requireContext(),
+            object : ContactActionListener{
+                override fun onContactClick(contact: Contact) {
+                    findNavController().navigate(R.id.action_transferFragment_to_zaebokFragment)
+                }
+
+                override fun onContactMoreClick(contact: Contact) {
+                    contactViewModel.deleteContact(requireContext(), contact)
+                }
+
+            },
+            contacts = ArrayList<Contact>()
+            )
+
+        binding.recyclerViewContacts.apply {
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = adapterv
+        }
+
         setHasOptionsMenu(true)
         return binding.root
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        contactService.removeListener(contactsListener)
-    }
-
-    private val contactsListener : ContactsListener = {
-        adapter.contacts = it
     }
 
     override fun onPrepareOptionsMenu(menu: Menu) {

@@ -10,8 +10,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat.getSystemService
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.memtone.databinding.FragmentProfile2Binding
+import com.example.memtone.model.ContactViewModel
 
 
 class ProfileFragm : Fragment() {
@@ -20,7 +22,7 @@ class ProfileFragm : Fragment() {
     private val binding get() = _binding!!
     private lateinit var preferencesKEY: SharedPreferences
     private lateinit var preferencesPIN: SharedPreferences
-
+    private lateinit var contactViewModel: ContactViewModel
     private lateinit var address: String
 
     override fun onCreateView(
@@ -55,12 +57,17 @@ class ProfileFragm : Fragment() {
 
                 .setPositiveButton("YES",
                     DialogInterface.OnClickListener { _, _ ->
+
                         preferencesKEY.edit()
                             .putString(APP_PREFERENCES_KEY, "")
                             .apply()
                         preferencesPIN.edit()
                             .putString(APP_PREFERENCES_PIN, "")
                             .apply()
+
+                        contactViewModel = ViewModelProvider(this).get(ContactViewModel::class.java)
+                        contactViewModel.deleteAllDataContact(requireContext())
+
                         findNavController().navigate(R.id.action_profileFragm_to_registrationFragment)
                     })
 
