@@ -39,8 +39,10 @@ class CreatePinCodeFragment : Fragment() {
         binding.btnLogButton.setOnClickListener {
             val pin = binding.editTextPinCode.text.toString()
             if (pin.length != 5)
-                Toast.makeText(activity, "PIN MUST CONTAIN 5 NUMBERS", Toast.LENGTH_SHORT).show()
+                binding.textInputLayoutPinCodeCreate.error = "PIN-code must contain 5 numbers!"
+            else if (pin.toIntOrNull() == null) binding.textInputLayoutPinCodeCreate.error = "PIN-code must be a number!"
             else {
+                binding.textInputLayoutPinCodeCreate.error = null
                 preferences.edit()
                     .putString(APP_PREFERENCES_PIN, pin)
                     .apply()

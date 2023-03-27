@@ -33,22 +33,26 @@ class RegistrationFragment : Fragment() {
         binding.btnLogin.setOnClickListener {
 
             val key = binding.editTextKey.text.toString()
-            if(validAccount(key)) {
+            if (key.isEmpty()) binding.textInputLayout.error = "Enter address!"
+            else {
+                binding.textInputLayout.error = null
+                if (validAccount(key)) {
 
-                preferences.edit()
-                    .putString(APP_PREFERENCES_KEY, key)
-                    .apply()
+                    preferences.edit()
+                        .putString(APP_PREFERENCES_KEY, key)
+                        .apply()
 
-//                Toast.makeText(activity, "Reg", Toast.LENGTH_SHORT)
-//                    .show()
-//                Toast.makeText(activity, preferences.getString(APP_PREFERENCES_KEY, "nothing").toString(), Toast.LENGTH_SHORT)
-//                    .show()
-//                Toast.makeText(activity, preferences.getString(APP_PREFERENCES_PIN, "nothing").toString(), Toast.LENGTH_SHORT)
-//                    .show()
+                    //                Toast.makeText(activity, "Reg", Toast.LENGTH_SHORT)
+                    //                    .show()
+                    //                Toast.makeText(activity, preferences.getString(APP_PREFERENCES_KEY, "nothing").toString(), Toast.LENGTH_SHORT)
+                    //                    .show()
+                    //                Toast.makeText(activity, preferences.getString(APP_PREFERENCES_PIN, "nothing").toString(), Toast.LENGTH_SHORT)
+                    //                    .show()
 
-                findNavController().navigate(
-                    R.id.action_registrationFragment_to_createPinCodeFragment
-                )
+                    findNavController().navigate(
+                        R.id.action_registrationFragment_to_createPinCodeFragment
+                    )
+                }
             }
 //            val passwordText = binding.editTextPassword.text.toString()
 

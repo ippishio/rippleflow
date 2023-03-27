@@ -1,5 +1,6 @@
 package com.wallet.rippleflow
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.*
 import android.content.Context
@@ -34,6 +35,7 @@ class ProfileFragm : Fragment() {
 
     private lateinit var address: String
 
+    @SuppressLint("ResourceAsColor")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -91,7 +93,10 @@ class ProfileFragm : Fragment() {
                         dialog.cancel()
                     })
             val alertDialog: AlertDialog = builder.create()
+
             alertDialog.show()
+            alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.md_theme_light_error));
+            alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.md_theme_light_error));
         }
 
 
