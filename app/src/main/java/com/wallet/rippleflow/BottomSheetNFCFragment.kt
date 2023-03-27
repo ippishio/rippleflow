@@ -8,6 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import android.widget.Toast
+import androidx.navigation.fragment.findNavController
+import com.wallet.rippleflow.databinding.FragmentBottomSheetTransferBinding
+import com.wallet.rippleflow.databinding.FragmentNfcBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.wallet.rippleflow.databinding.FragmentBottomSheetNfcBinding
 

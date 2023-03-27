@@ -91,7 +91,7 @@
         <action
             android:id="@+id/action_createPinCodeFragment_to_mainFragment"
             app:destination="@id/mainFragment"
-            app:popUpTo="@id/createPinCodeFragment"
+            app:popUpTo="@id/registrationFragment"
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
@@ -102,6 +102,9 @@
         <action
             android:id="@+id/action_profileFragm_to_registrationFragment"
             app:destination="@id/registrationFragment" />
+        <action
+            android:id="@+id/action_profileFragm_to_transactionsHistoryFragment"
+            app:destination="@id/transactionsHistoryFragment" />
     </fragment>
     <fragment
         android:id="@+id/qrFragment"
@@ -112,4 +115,9 @@
             android:id="@+id/action_qrFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/transactionsHistoryFragment"
+        android:name="com.wallet.rippleflow.TransactionsHistoryFragment"
+        android:label="Transactions"
+        tools:layout="@layout/fragment_transactions" />
 </navigation>
