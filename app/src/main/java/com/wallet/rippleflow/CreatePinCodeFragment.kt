@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import com.wallet.rippleflow.databinding.FragmentCreatePinCodeBinding
+import com.wallet.rippleflow.databinding.FragmentCreatePinCodeBinding
 import com.wallet.rippleflow.databinding.FragmentMainBinding
 
 
@@ -49,6 +50,7 @@ class CreatePinCodeFragment : Fragment() {
                 findNavController().navigate(R.id.action_createPinCodeFragment_to_mainFragment)
             }
         }
+
         setHasOptionsMenu(true)
     }
 

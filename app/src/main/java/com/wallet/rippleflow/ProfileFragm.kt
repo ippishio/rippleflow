@@ -4,6 +4,11 @@ import android.app.AlertDialog
 import android.content.*
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import android.content.Context
+import android.content.DialogInterface
+import android.content.Intent
+import android.content.SharedPreferences
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
@@ -14,6 +19,15 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.wallet.rippleflow.databinding.FragmentProfile2Binding
 import com.wallet.rippleflow.contact.ViewModel.ContactViewModel
+import android.view.inputmethod.InputMethodManager
+import androidx.core.content.ContextCompat.getSystemService
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.google.zxing.BarcodeFormat
+import com.google.zxing.MultiFormatWriter
+import com.google.zxing.WriterException
+import com.journeyapps.barcodescanner.BarcodeEncoder
+import com.wallet.rippleflow.databinding.FragmentProfile2Binding
 
 
 class ProfileFragm : Fragment() {
@@ -23,6 +37,7 @@ class ProfileFragm : Fragment() {
     private lateinit var preferencesKEY: SharedPreferences
     private lateinit var preferencesPIN: SharedPreferences
     private lateinit var contactViewModel: ContactViewModel
+
     private lateinit var address: String
 
     override fun onCreateView(
@@ -90,6 +105,15 @@ class ProfileFragm : Fragment() {
             shareText.putExtra(Intent.EXTRA_TEXT, dataToShare)
             startActivity(Intent.createChooser(shareText, "Share"))
         }
+
+        var qr = binding.qrCode
+
+        val mWriter = MultiFormatWriter()
+
+        val mMatrix = mWriter.encode(preferencesKEY.getString(APP_PREFERENCES_KEY, "").toString(), BarcodeFormat.QR_CODE, 400, 400)
+        val mEncoder = BarcodeEncoder()
+        val mBitmap = mEncoder.createBitmap(mMatrix)
+        qr.setImageBitmap(mBitmap)
 
         setHasOptionsMenu(true)
         return binding.root

@@ -26,7 +26,14 @@
             app:popExitAnim="@android:anim/slide_out_right" />
         <action
             android:id="@+id/action_mainFragment_to_profileFragm"
-            app:destination="@id/profileFragm" />
+            app:destination="@id/profileFragm"
+            app:enterAnim="@anim/slide_in_right1"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_mainFragment_to_qrFragment"
+            app:destination="@id/qrFragment" />
     </fragment>
     <fragment
         android:id="@+id/transferFragment"
@@ -55,7 +62,6 @@
     <fragment
         android:id="@+id/zaebokFragment"
         android:name="com.wallet.rippleflow.ZaebokFragment"
-        android:label="fragment_zaebok"
         tools:layout="@layout/fragment_zaebok" />
     <fragment
         android:id="@+id/pinCodeFragment"
@@ -85,7 +91,7 @@
         <action
             android:id="@+id/action_createPinCodeFragment_to_mainFragment"
             app:destination="@id/mainFragment"
-            app:popUpTo="@id/createPinCodeFragment"
+            app:popUpTo="@id/registrationFragment"
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
@@ -96,9 +102,15 @@
         <action
             android:id="@+id/action_profileFragm_to_registrationFragment"
             app:destination="@id/registrationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/qrFragment"
+        android:name="com.wallet.rippleflow.qrFragment"
+        android:label="fragment_qr"
+        tools:layout="@layout/fragment_qr" >
         <action
-            android:id="@+id/action_profileFragm_to_transactionsHistoryFragment"
-            app:destination="@id/transactionsHistoryFragment" />
+            android:id="@+id/action_qrFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
     </fragment>
     <fragment
         android:id="@+id/transactionsHistoryFragment"

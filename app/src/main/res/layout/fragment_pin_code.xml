@@ -9,7 +9,7 @@
 
     <ImageView
         android:id="@+id/imageView8"
-        android:layout_width="200dp"
+        android:layout_width="123dp"
         android:layout_height="227dp"
         android:src="@drawable/frame2"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -88,8 +88,8 @@
             <com.google.android.material.button.MaterialButton
                 style="?attr/materialIconButtonStyle"
                 android:id="@+id/textButton1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:textSize="36dp"
                 android:layout_marginRight="30dp"
                 android:text="1" />
@@ -97,16 +97,16 @@
             <com.google.android.material.button.MaterialButton
                 style="?attr/materialIconButtonStyle"
                 android:id="@+id/textButton2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:textSize="36dp"
                 android:text="2" />
 
             <com.google.android.material.button.MaterialButton
                 style="?attr/materialIconButtonStyle"
                 android:id="@+id/textButton3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:textSize="36dp"
                 android:layout_marginLeft="30dp"
                 android:text="3" />
@@ -120,8 +120,8 @@
             <com.google.android.material.button.MaterialButton
                 style="?attr/materialIconButtonStyle"
                 android:id="@+id/textButton4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:textSize="36dp"
                 android:layout_marginRight="30dp"
                 android:text="4" />
@@ -129,16 +129,16 @@
             <com.google.android.material.button.MaterialButton
                 style="?attr/materialIconButtonStyle"
                 android:id="@+id/textButton5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:textSize="36dp"
                 android:text="5" />
 
             <com.google.android.material.button.MaterialButton
                 style="?attr/materialIconButtonStyle"
                 android:id="@+id/textButton6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:textSize="36dp"
                 android:layout_marginLeft="30dp"
                 android:text="6" />
@@ -152,8 +152,8 @@
             <com.google.android.material.button.MaterialButton
                 style="?attr/materialIconButtonStyle"
                 android:id="@+id/textButton7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:textSize="36dp"
                 android:layout_marginRight="30dp"
                 android:text="7" />
@@ -161,16 +161,16 @@
             <com.google.android.material.button.MaterialButton
                 style="?attr/materialIconButtonStyle"
                 android:id="@+id/textButton8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:textSize="36dp"
                 android:text="8" />
 
             <com.google.android.material.button.MaterialButton
                 style="?attr/materialIconButtonStyle"
                 android:id="@+id/textButton9"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:textSize="36dp"
                 android:layout_marginLeft="30dp"
                 android:text="9"/>
@@ -185,7 +185,8 @@
                 style="?attr/materialIconButtonStyle"
                 android:id="@+id/textButtonFingerPrint"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
+                android:layout_marginStart="10dp"
                 android:textSize="36dp"
                 android:layout_marginRight="30dp"
                 app:icon="@drawable/fingerprint_svgrepo_com"/>
@@ -193,8 +194,9 @@
             <com.google.android.material.button.MaterialButton
                 style="?attr/materialIconButtonStyle"
                 android:id="@+id/textButton0"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginStart="42dp"
                 android:textSize="36dp"
                 android:text="0" />
 
@@ -202,7 +204,8 @@
                 style="?attr/materialIconButtonStyle"
                 android:id="@+id/textButtonDelete"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
+                android:layout_marginStart="40dp"
                 android:textSize="36dp"
                 app:icon="@drawable/currency_cent_svgrepo_com"
                 android:layout_marginLeft="30dp"/>

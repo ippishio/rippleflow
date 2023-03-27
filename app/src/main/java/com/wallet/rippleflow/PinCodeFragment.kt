@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.hardware.biometrics.BiometricManager.Authenticators.BIOMETRIC_STRONG
 import android.hardware.biometrics.BiometricManager.Authenticators.DEVICE_CREDENTIAL
+import androidx.navigation.fragment.findNavController
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
@@ -23,6 +24,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.biometric.BiometricManager
+import androidx.biometric.BiometricPrompt
+import androidx.core.content.ContextCompat
+import com.wallet.rippleflow.databinding.FragmentPinCodeBinding
 import java.util.concurrent.Executor
 
 
@@ -54,7 +59,6 @@ class PinCodeFragment : Fragment() {
             APP_PREFERENCES_PIN, Context.MODE_PRIVATE
         )!!
 //        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
-        (activity as AppCompatActivity).supportActionBar?.show()
         setHasOptionsMenu(true)
     }
 

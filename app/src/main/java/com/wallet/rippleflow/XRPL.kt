@@ -12,6 +12,8 @@ import org.xrpl.xrpl4j.model.client.fees.FeeUtils
 import org.xrpl.xrpl4j.model.transactions.Address
 import org.xrpl.xrpl4j.model.transactions.Payment
 import org.xrpl.xrpl4j.model.transactions.XrpCurrencyAmount
+
+
 class XRPL(secretKey: String = "") {
 
     var xrplClient = XrplClient("https://s.altnet.rippletest.net:51234/".toHttpUrl())

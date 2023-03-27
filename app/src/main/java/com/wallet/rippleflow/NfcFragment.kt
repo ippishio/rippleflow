@@ -27,7 +27,7 @@ class NfcFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnGO.setOnClickListener {
-            BottomSheetNFCFragment().show(fragmentManager!!, "NFCtag")
+            BottomSheetNFCFragment().show(requireFragmentManager(), "NFCtag")
         }
         setHasOptionsMenu(true)
     }
@@ -39,6 +39,4 @@ class NfcFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
-
 }
