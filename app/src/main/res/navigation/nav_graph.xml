@@ -73,6 +73,9 @@
             app:destination="@id/mainFragment"
             app:popUpTo="@id/pinCodeFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_pinCodeFragment_to_registrationFragment"
+            app:destination="@id/registrationFragment" />
     </fragment>
     <fragment
         android:id="@+id/registrationFragment"

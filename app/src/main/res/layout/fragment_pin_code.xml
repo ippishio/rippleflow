@@ -77,8 +77,10 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.498">
 
 
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -86,30 +88,30 @@
             android:layout_height="wrap_content">
 
             <com.google.android.material.button.MaterialButton
-                style="?attr/materialIconButtonStyle"
                 android:id="@+id/textButton1"
+                style="?attr/materialIconButtonStyle"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:textSize="36dp"
                 android:layout_marginRight="30dp"
-                android:text="1" />
+                android:text="1"
+                android:textSize="36dp" />
 
             <com.google.android.material.button.MaterialButton
-                style="?attr/materialIconButtonStyle"
                 android:id="@+id/textButton2"
+                style="?attr/materialIconButtonStyle"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:textSize="36dp"
-                android:text="2" />
+                android:text="2"
+                android:textSize="36dp" />
 
             <com.google.android.material.button.MaterialButton
-                style="?attr/materialIconButtonStyle"
                 android:id="@+id/textButton3"
+                style="?attr/materialIconButtonStyle"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:textSize="36dp"
                 android:layout_marginLeft="30dp"
-                android:text="3" />
+                android:text="3"
+                android:textSize="36dp" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -118,30 +120,30 @@
             android:layout_height="wrap_content">
 
             <com.google.android.material.button.MaterialButton
-                style="?attr/materialIconButtonStyle"
                 android:id="@+id/textButton4"
+                style="?attr/materialIconButtonStyle"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:textSize="36dp"
                 android:layout_marginRight="30dp"
-                android:text="4" />
+                android:text="4"
+                android:textSize="36dp" />
 
             <com.google.android.material.button.MaterialButton
-                style="?attr/materialIconButtonStyle"
                 android:id="@+id/textButton5"
+                style="?attr/materialIconButtonStyle"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:textSize="36dp"
-                android:text="5" />
+                android:text="5"
+                android:textSize="36dp" />
 
             <com.google.android.material.button.MaterialButton
-                style="?attr/materialIconButtonStyle"
                 android:id="@+id/textButton6"
+                style="?attr/materialIconButtonStyle"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:textSize="36dp"
                 android:layout_marginLeft="30dp"
-                android:text="6" />
+                android:text="6"
+                android:textSize="36dp" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -150,30 +152,30 @@
             android:layout_height="wrap_content">
 
             <com.google.android.material.button.MaterialButton
-                style="?attr/materialIconButtonStyle"
                 android:id="@+id/textButton7"
+                style="?attr/materialIconButtonStyle"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:textSize="36dp"
                 android:layout_marginRight="30dp"
-                android:text="7" />
+                android:text="7"
+                android:textSize="36dp" />
 
             <com.google.android.material.button.MaterialButton
-                style="?attr/materialIconButtonStyle"
                 android:id="@+id/textButton8"
+                style="?attr/materialIconButtonStyle"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:textSize="36dp"
-                android:text="8" />
+                android:text="8"
+                android:textSize="36dp" />
 
             <com.google.android.material.button.MaterialButton
-                style="?attr/materialIconButtonStyle"
                 android:id="@+id/textButton9"
+                style="?attr/materialIconButtonStyle"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:textSize="36dp"
                 android:layout_marginLeft="30dp"
-                android:text="9"/>
+                android:text="9"
+                android:textSize="36dp" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -182,37 +184,50 @@
             android:layout_height="wrap_content">
 
             <com.google.android.material.button.MaterialButton
-                style="?attr/materialIconButtonStyle"
                 android:id="@+id/textButtonFingerPrint"
+                style="?attr/materialIconButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="70dp"
                 android:layout_marginStart="10dp"
-                android:textSize="36dp"
                 android:layout_marginRight="30dp"
-                app:icon="@drawable/fingerprint_svgrepo_com"/>
+                android:textSize="36dp"
+                app:icon="@drawable/fingerprint_svgrepo_com" />
 
             <com.google.android.material.button.MaterialButton
-                style="?attr/materialIconButtonStyle"
                 android:id="@+id/textButton0"
+                style="?attr/materialIconButtonStyle"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_marginStart="42dp"
-                android:textSize="36dp"
-                android:text="0" />
+                android:text="0"
+                android:textSize="36dp" />
 
             <com.google.android.material.button.MaterialButton
-                style="?attr/materialIconButtonStyle"
                 android:id="@+id/textButtonDelete"
+                style="?attr/materialIconButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="70dp"
                 android:layout_marginStart="40dp"
+                android:layout_marginLeft="30dp"
                 android:textSize="36dp"
-                app:icon="@drawable/currency_cent_svgrepo_com"
-                android:layout_marginLeft="30dp"/>
+                app:icon="@drawable/undo_svgrepo_com" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
 
     </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvIforgotPin"
+        android:clickable="true"
+        style="@style/TextAppearance.Material3.ActionBar.Subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="I forgot PIN-code"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat6" />
+
 
 
 

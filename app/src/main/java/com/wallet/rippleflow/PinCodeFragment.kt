@@ -1,6 +1,8 @@
 package com.wallet.rippleflow
 
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
 import android.hardware.biometrics.BiometricManager.Authenticators.BIOMETRIC_STRONG
@@ -18,11 +20,15 @@ import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
+import com.wallet.rippleflow.contact.ViewModel.ContactViewModel
 import com.wallet.rippleflow.databinding.FragmentPinCodeBinding
+import com.wallet.rippleflow.transaction.ViewModel.TransactionViewModel
 import java.util.concurrent.Executor
 
 
@@ -37,6 +43,11 @@ class PinCodeFragment : Fragment() {
     private val binding get() = _binding!!
     private var passCode = "";
 
+    private lateinit var preferencesKEY: SharedPreferences
+    private lateinit var preferencesPIN: SharedPreferences
+    private lateinit var contactViewModel: ContactViewModel
+    private lateinit var transactionViewModel: TransactionViewModel
+
     private var numbers_list: ArrayList<String> = ArrayList()
     private lateinit var num_00: String
     private lateinit var num_01: String
@@ -49,7 +60,8 @@ class PinCodeFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         (activity as AppCompatActivity).supportActionBar?.hide()
-
+        preferencesKEY = activity?.getSharedPreferences(APP_PREFERENCES_KEY, Context.MODE_PRIVATE)!!
+        preferencesPIN = activity?.getSharedPreferences(APP_PREFERENCES_PIN, Context.MODE_PRIVATE)!!
         preferences = activity?.getSharedPreferences(
             APP_PREFERENCES_PIN, Context.MODE_PRIVATE
         )!!
@@ -65,6 +77,47 @@ class PinCodeFragment : Fragment() {
          _binding = FragmentPinCodeBinding.inflate(inflater, container, false)
         authOne()
         listeners()
+
+        activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, object :
+            OnBackPressedCallback(true){
+            @Override
+            override fun handleOnBackPressed() {
+                activity!!.finish()
+            }
+        });
+
+        binding.tvIforgotPin.setOnClickListener {
+            val builder: AlertDialog.Builder = AlertDialog.Builder(activity, R.style.CustomAlertDialog)
+            builder
+                .setMessage("Did you forget your PIN-code?")
+
+                .setPositiveButton("YES",
+                    DialogInterface.OnClickListener{ _, _ ->
+                        findNavController().navigate(R.id.action_pinCodeFragment_to_registrationFragment)
+                        findNavController().previousBackStackEntry?.let { backStackEntry -> findNavController().popBackStack(backStackEntry.destination.id, true) }
+
+                        preferencesKEY.edit()
+                            .putString(APP_PREFERENCES_KEY, "")
+                            .apply()
+                        preferencesPIN.edit()
+                            .putString(APP_PREFERENCES_PIN, "")
+                            .apply()
+
+                        contactViewModel = ViewModelProvider(this).get(ContactViewModel::class.java)
+                        contactViewModel.deleteAllDataContact(requireContext())
+
+                        transactionViewModel = ViewModelProvider(this).get(TransactionViewModel::class.java)
+                        transactionViewModel.deleteAllDataTransaction(requireContext())
+                })
+                .setNegativeButton("NO",
+                    DialogInterface.OnClickListener{ dialog, _->
+                        dialog.cancel()
+                    })
+            val alertDialog: AlertDialog = builder.create()
+            alertDialog.show()
+
+        }
+
         return binding.root
     }
 

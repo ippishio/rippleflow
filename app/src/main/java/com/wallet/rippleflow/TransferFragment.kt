@@ -55,7 +55,7 @@ class TransferFragment : Fragment() {
         }
 
         binding.btnFabAddContact.setOnClickListener {
-            BottomSheetTransferFragment().show(fragmentManager!!, "newContactTag")
+            BottomSheetTransferFragment().show(requireFragmentManager(), "newContactTag")
         }
 
         binding.recyclerViewContacts.addOnScrollListener(object : RecyclerView.OnScrollListener() {
@@ -85,7 +85,8 @@ class TransferFragment : Fragment() {
             requireContext(),
             object : ContactActionListener{
                 override fun onContactClick(contact: Contact) {
-                    findNavController().navigate(R.id.action_transferFragment_to_zaebokFragment)
+//                    findNavController().navigate(R.id.action_transferFragment_to_zaebokFragment)
+                    binding.editTextAddress.setText(contact.address)
                 }
 
                 override fun onContactMoreClick(contact: Contact) {
