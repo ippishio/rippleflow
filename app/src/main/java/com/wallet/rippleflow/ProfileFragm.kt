@@ -23,6 +23,7 @@ import com.google.zxing.MultiFormatWriter
 import com.google.zxing.WriterException
 import com.journeyapps.barcodescanner.BarcodeEncoder
 import com.wallet.rippleflow.databinding.FragmentProfile2Binding
+import org.xrpl.xrpl4j.codec.addresses.exceptions.EncodingFormatException
 
 
 class ProfileFragm : Fragment() {
@@ -44,10 +45,17 @@ class ProfileFragm : Fragment() {
         preferencesKEY = activity?.getSharedPreferences(APP_PREFERENCES_KEY, Context.MODE_PRIVATE)!!
         preferencesPIN = activity?.getSharedPreferences(APP_PREFERENCES_PIN, Context.MODE_PRIVATE)!!
         Thread {
-            var ans = XRPL(preferencesKEY.getString(APP_PREFERENCES_KEY, "")!!).getAddress()
-            activity?.runOnUiThread {
-                binding.textViewAddress.text = ans//preferencesKEY.getString(APP_PREFERENCES_KEY, "").toString()
+            try {
+                var ans = XRPL(preferencesKEY.getString(APP_PREFERENCES_KEY, "")!!).getAddress()
+                activity?.runOnUiThread {
+                    binding.textViewAddress.text =
+                        ans//preferencesKEY.getString(APP_PREFERENCES_KEY, "").toString()
 
+                }
+            } catch (e: EncodingFormatException){
+                activity?.runOnUiThread {
+                    binding.textViewAddress.text = "Error"
+                }
             }
         }.start()
         binding.btnChangePIN.setOnClickListener {
@@ -113,12 +121,15 @@ class ProfileFragm : Fragment() {
 
         val mWriter = MultiFormatWriter()
         Thread {
-            var ans = XRPL(preferencesKEY.getString(APP_PREFERENCES_KEY, "")!!).getAddress()
-            activity?.runOnUiThread {
-                val mMatrix = mWriter.encode(ans, BarcodeFormat.QR_CODE, 400, 400)
-                val mEncoder = BarcodeEncoder()
-                val mBitmap = mEncoder.createBitmap(mMatrix)
-                qr.setImageBitmap(mBitmap)
+            try {
+                var ans = XRPL(preferencesKEY.getString(APP_PREFERENCES_KEY, "")!!).getAddress()
+                activity?.runOnUiThread {
+                    val mMatrix = mWriter.encode(ans, BarcodeFormat.QR_CODE, 400, 400)
+                    val mEncoder = BarcodeEncoder()
+                    val mBitmap = mEncoder.createBitmap(mMatrix)
+                    qr.setImageBitmap(mBitmap)
+                }
+            } catch(e:EncodingFormatException){
             }
         }.start()
 

@@ -9,6 +9,7 @@ import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -19,6 +20,7 @@ import com.wallet.rippleflow.contact.*
 import com.wallet.rippleflow.contact.Adapter.ContactsAdapter
 import com.wallet.rippleflow.contact.Model.Contact
 import com.wallet.rippleflow.contact.ViewModel.ContactViewModel
+import org.xrpl.xrpl4j.codec.addresses.exceptions.EncodingFormatException
 
 class TransferFragment : Fragment() {
 
@@ -49,21 +51,31 @@ class TransferFragment : Fragment() {
                     binding.inputLayoutAddressTransfer.error = null
                     var preferences: SharedPreferences =
                         activity?.getSharedPreferences(APP_PREFERENCES_KEY, Context.MODE_PRIVATE)!!
-                    println(address)
-                    Thread {
-                        var result_hash =
-                            (XRPL(preferences.getString(APP_PREFERENCES_KEY, "")!!).sendXRP(
-                                address,
-                                (amount.toFloat() * 1000000f).toLong()
-                            ));
-                        activity?.runOnUiThread {
-                            println("done")
-                            println(result_hash); //need to show this to user
 
+                    Thread {
+                        try {
+                            var result_hash =
+                                (XRPL(preferences.getString(APP_PREFERENCES_KEY, "")!!).sendXRP(
+                                    address,
+                                    (amount.toFloat() * 1000000f).toLong()
+                                ));
+                            activity?.runOnUiThread {
+                                println("done")
+                                println(result_hash)
+                                findNavController().navigate(R.id.action_transferFragment_to_zaebokFragment)
+                            }
+                        } catch(e:java.lang.IllegalArgumentException){
+                            activity?.runOnUiThread {
+                                Toast.makeText(getActivity(), "An error occurred during transaction",
+                                    Toast.LENGTH_LONG).show();
+                            }
+                        } catch(e:EncodingFormatException){
+                            activity?.runOnUiThread {
+                                Toast.makeText(getActivity(), "An error occurred during transaction",
+                                    Toast.LENGTH_LONG).show();
+                            }
                         }
                     }.start()
-
-                    findNavController().navigate(R.id.action_transferFragment_to_zaebokFragment)
                 }
             }
         }

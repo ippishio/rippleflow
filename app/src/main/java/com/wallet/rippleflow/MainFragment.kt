@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.wallet.rippleflow.databinding.FragmentMainBinding
 import org.json.JSONObject
 import org.json.JSONTokener
+import org.xrpl.xrpl4j.codec.addresses.exceptions.EncodingFormatException
 import java.math.RoundingMode
 import java.net.URL
 import java.text.DecimalFormat
@@ -41,6 +42,8 @@ class MainFragment : Fragment() {
                         DialogInterface.OnClickListener { dialog, i -> dialog.cancel() })
                 val alertDialog: AlertDialog = builder.create()
                 alertDialog.show()
+                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.md_theme_light_error));
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.md_theme_light_error));
             }
         });
 
@@ -51,13 +54,21 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         var preferences: SharedPreferences = activity?.getSharedPreferences(APP_PREFERENCES_KEY, Context.MODE_PRIVATE)!!
         Thread {
-            val balance = XRPL(preferences.getString(APP_PREFERENCES_KEY, "").toString()).getBalance()
-            activity?.runOnUiThread {
-                try {
-                    binding.textViewXRPAmount.text = (balance / 1000000f).toString()
-                    convertToDollars((balance / 1000000f).toString())
-                } catch (e: Exception) {
-
+            try {
+                val balance =
+                    XRPL(preferences.getString(APP_PREFERENCES_KEY, "").toString()).getBalance()
+                activity?.runOnUiThread {
+                    try {
+                        binding.textViewXRPAmount.text = (balance / 1000000f).toString()
+                        convertToDollars((balance / 1000000f).toString())
+                    } catch (e: Exception) {
+                    }
+                }
+            } catch (e:EncodingFormatException){
+                activity?.runOnUiThread {
+                    try {
+                        binding.textViewXRPAmount.text = "Error"
+                    } catch (e: Exception) {}
                 }
             }
         }.start()
