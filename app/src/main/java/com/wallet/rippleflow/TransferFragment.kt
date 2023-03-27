@@ -40,18 +40,32 @@ class TransferFragment : Fragment() {
             var amount: String = view1.text.toString()
             var view2: EditText = binding.editTextAddress
             var address: String = view2.text.toString()
-            var preferences: SharedPreferences = activity?.getSharedPreferences(APP_PREFERENCES_KEY, Context.MODE_PRIVATE)!!
-            println(address)
-            Thread {
-                var result_hash = (XRPL(preferences.getString(APP_PREFERENCES_KEY, "")!!).sendXRP(address, (amount.toFloat()*1000000f).toLong()));
-                activity?.runOnUiThread {
-                    println("done")
-                    println(result_hash); //need to show this to user
+            if (amount == "") binding.inputLayoutAmountTransfer.error = "Enter amount!"
+            else if (amount.toFloatOrNull() == null) binding.inputLayoutAmountTransfer.error = "Amount must be a number!"
+            else {
+                binding.inputLayoutAmountTransfer.error = null
+                if (address.isEmpty()) binding.inputLayoutAddressTransfer.error = "Enter address!"
+                else {
+                    binding.inputLayoutAddressTransfer.error = null
+                    var preferences: SharedPreferences =
+                        activity?.getSharedPreferences(APP_PREFERENCES_KEY, Context.MODE_PRIVATE)!!
+                    println(address)
+                    Thread {
+                        var result_hash =
+                            (XRPL(preferences.getString(APP_PREFERENCES_KEY, "")!!).sendXRP(
+                                address,
+                                (amount.toFloat() * 1000000f).toLong()
+                            ));
+                        activity?.runOnUiThread {
+                            println("done")
+                            println(result_hash); //need to show this to user
 
+                        }
+                    }.start()
+
+                    findNavController().navigate(R.id.action_transferFragment_to_zaebokFragment)
                 }
-            }.start()
-
-            findNavController().navigate(R.id.action_transferFragment_to_zaebokFragment)
+            }
         }
 
         binding.btnFabAddContact.setOnClickListener {

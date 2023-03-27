@@ -53,8 +53,12 @@ class MainFragment : Fragment() {
         Thread {
             val balance = XRPL(preferences.getString(APP_PREFERENCES_KEY, "").toString()).getBalance()
             activity?.runOnUiThread {
-                binding.textViewXRPAmount.text = (balance/1000000f).toString()
-                convertToDollars((balance/1000000f).toString())
+                try {
+                    binding.textViewXRPAmount.text = (balance / 1000000f).toString()
+                    convertToDollars((balance / 1000000f).toString())
+                } catch (e: Exception) {
+
+                }
             }
         }.start()
         super.onViewCreated(view, savedInstanceState)

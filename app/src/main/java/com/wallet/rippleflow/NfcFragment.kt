@@ -31,16 +31,20 @@ class NfcFragment : Fragment() {
         binding.btnGO.setOnClickListener {
             val bundle = Bundle()
             val text = binding.editTextAmount.text.toString()
-            bundle.putString(
-                "amount",
-                text
-            )
+            if (text == "" || text.toDoubleOrNull() == null) binding.textInputLayout2.error = "Enter amount!"
+            else {
+                binding.textInputLayout2.error = null
+                bundle.putString(
+                    "amount",
+                    text
+                )
 
-            val bottomSheetNFCFragment = BottomSheetNFCFragment()
-            bottomSheetNFCFragment
-                .arguments = bundle
-            bottomSheetNFCFragment
-                .show((context as AppCompatActivity).supportFragmentManager, "NFCtag")
+                val bottomSheetNFCFragment = BottomSheetNFCFragment()
+                bottomSheetNFCFragment
+                    .arguments = bundle
+                bottomSheetNFCFragment
+                    .show((context as AppCompatActivity).supportFragmentManager, "NFCtag")
+            }
         }
         setHasOptionsMenu(true)
     }

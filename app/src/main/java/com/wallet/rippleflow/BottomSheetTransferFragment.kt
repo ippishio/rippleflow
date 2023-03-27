@@ -35,21 +35,31 @@ class BottomSheetTransferFragment: BottomSheetDialogFragment() {
     private fun saveContact() {
         val name = binding.editTextName.text.toString()
         val address = binding.editTextAddress.text.toString()
-        //TODO
-        binding.editTextName.setText("")
-        binding.editTextAddress.setText("")
-        val contact = Contact(
-            id = 0,
-            name = name,
-            address = address
-        )
+        if (name.isEmpty()) binding.nameAddContact.error = "Enter name!"
+        else{
+            binding.nameAddContact.error = null
+            if (address.isEmpty()) binding.addressAddContact.error = "Enter address!"
+            else {
+                binding.addressAddContact.error = null
 
-        contactViewModel = ViewModelProvider(this).get(ContactViewModel::class.java)
-        contactViewModel.insert(requireContext(), contact)
+                binding.editTextName.setText("")
+                binding.editTextAddress.setText("")
+                val contact = Contact(
+                    id = 0,
+                    name = name,
+                    address = address
+                )
 
-        println(contact)
+                contactViewModel = ViewModelProvider(this).get(ContactViewModel::class.java)
+                contactViewModel.insert(requireContext(), contact)
 
-        dismiss()
+                println(contact)
+
+                dismiss()
+            }
+        }
+
+
     }
 
 

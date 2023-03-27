@@ -20,10 +20,9 @@ class BottomSheetChangePINFragment: BottomSheetDialogFragment() {
         preferences = activity?.getSharedPreferences(APP_PREFERENCES_PIN, Context.MODE_PRIVATE)!!
         binding.btnChangePin.setOnClickListener {
             val newPin = binding.editTextPin.text.toString()
-            if(newPin.length != 5)
-                Toast.makeText(activity, "PIN-code must contain 5 numbers",
-                    Toast.LENGTH_SHORT).show()
-            else {
+            if(newPin.length != 5) binding.inputLayoutChangePin.error = "PIN-code must contain 5 digits!"
+            else{
+                binding.inputLayoutChangePin.error = null
                 changePIN(newPin)
             }
         }
