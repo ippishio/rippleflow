@@ -1,6 +1,10 @@
 package com.wallet.rippleflow
 
 import android.app.AlertDialog
+import android.content.DialogInterface
+import android.os.Bundle
+import android.view.*
+import androidx.activity.OnBackPressedCallback
 import android.content.Context
 import android.content.DialogInterface
 import android.content.SharedPreferences
@@ -30,24 +34,12 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
-        (activity as AppCompatActivity).supportActionBar?.show()
-        var view1: TextView = binding.textViewXRPAmount
-        var preferences: SharedPreferences = activity?.getSharedPreferences(APP_PREFERENCES_KEY, Context.MODE_PRIVATE)!!
-            Thread {
-                var ans = (XRPL(preferences.getString(APP_PREFERENCES_KEY, "")!!).getBalance()/1000000f).toString()
-                println(ans)
-                activity?.runOnUiThread {
-                    view1.setText(ans)
-                    convertToDollars(ans)
-                }
-            }.start()
-
         activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, object :OnBackPressedCallback(true){
             @Override
             override fun handleOnBackPressed() {
                 val builder: AlertDialog.Builder = AlertDialog.Builder(activity, R.style.CustomAlertDialog)
                 builder
-                    .setMessage("Do you want exit from RiplleFlow?")
+                    .setMessage("Do you want to exit from RippleFlow?")
                     .setPositiveButton("YES",
                         DialogInterface.OnClickListener { dialog, i -> activity?.finish() })
                     .setNegativeButton("NO",
@@ -55,9 +47,6 @@ class MainFragment : Fragment() {
                 val alertDialog: AlertDialog = builder.create()
                 alertDialog.show()
             }
-                //setEnabled(false); // call this to disable listener
-                //remove(); // call to remove listener
-                //Toast.makeText(getContext(), "Listing for back press from this fragment", Toast.LENGTH_SHORT).show();
         });
 
         return binding.root
@@ -66,11 +55,7 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-        convertToDollars("1")
-        // Ilyas, fix this
-
-
+//        convertToDollars("1")
         binding.btnNFC.setOnClickListener {
             findNavController().navigate(R.id.action_mainFragment_to_nfcFragment)
         }
@@ -78,6 +63,7 @@ class MainFragment : Fragment() {
         binding.btnTransfer.setOnClickListener {
             findNavController().navigate(R.id.action_mainFragment_to_transferFragment)
         }
+
         binding.btnQR.setOnClickListener {
             findNavController().navigate(R.id.action_mainFragment_to_qrFragment)
         }
@@ -102,8 +88,6 @@ class MainFragment : Fragment() {
             }
         }.start()
     }
-
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

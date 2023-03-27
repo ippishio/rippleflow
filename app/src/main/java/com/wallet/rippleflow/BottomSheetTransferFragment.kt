@@ -4,12 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
+import com.wallet.rippleflow.databinding.FragmentBottomSheetTransferBinding
+import com.wallet.rippleflow.contact.Model.Contact
+import com.wallet.rippleflow.contact.ViewModel.ContactViewModel
 import android.widget.Toast
 import com.wallet.rippleflow.databinding.FragmentBottomSheetTransferBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class BottomSheetTransferFragment: BottomSheetDialogFragment() {
     private lateinit var binding: FragmentBottomSheetTransferBinding
+    private lateinit var contactViewModel: ContactViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -35,7 +40,19 @@ class BottomSheetTransferFragment: BottomSheetDialogFragment() {
         //TODO
         binding.editTextName.setText("")
         binding.editTextAddress.setText("")
-        Toast.makeText(activity, name, Toast.LENGTH_SHORT).show()
+        val contact = Contact(
+            id = 0,
+            name = name,
+            address = address
+        )
+
+        contactViewModel = ViewModelProvider(this).get(ContactViewModel::class.java)
+        contactViewModel.insert(requireContext(), contact)
+
+        println(contact)
+
         dismiss()
     }
+
+
 }

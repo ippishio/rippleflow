@@ -1,4 +1,3 @@
-
 package com.wallet.rippleflow
 
 import okhttp3.HttpUrl.Companion.toHttpUrl
