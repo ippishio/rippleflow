@@ -1,6 +1,8 @@
 package com.wallet.rippleflow
 
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.Menu
@@ -12,6 +14,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.wallet.rippleflow.databinding.ActivityMainBinding
+import java.util.concurrent.Executor
 
 const val APP_PREFERENCES_KEY = "APP_PREFERENCES_KEY"
 const val  APP_PREFERENCES_PIN = "APP_PREFERENCES_PIN"
@@ -61,7 +64,6 @@ class MainActivity : AppCompatActivity() {
         } else {
             navController.navigate(R.id.registrationFragment)
         }
-
 
     }
 

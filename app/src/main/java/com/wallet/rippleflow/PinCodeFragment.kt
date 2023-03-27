@@ -174,6 +174,7 @@ class PinCodeFragment : Fragment() {
 
     }
 
+
     fun checkDeviceHasBiometric() {
         val biometricManager = BiometricManager.from(requireContext())
         when (biometricManager.canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_STRONG or BiometricManager.Authenticators.DEVICE_CREDENTIAL)) {

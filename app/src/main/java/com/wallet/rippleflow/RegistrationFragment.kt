@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import com.wallet.rippleflow.databinding.FragmentRegistrationBinding
@@ -60,7 +61,12 @@ class RegistrationFragment : Fragment() {
 
     fun validAccount(key: String) : Boolean {
         // TODO CHECKING ACCOUNT VALIDATION
-        return true
+        if(key.isEmpty()) {
+            Toast.makeText(context, "key cannot be empty", Toast.LENGTH_SHORT).show()
+            return false
+        } else
+            return true
+        return false
     }
 
     override fun onPrepareOptionsMenu(menu: Menu) {

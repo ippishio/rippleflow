@@ -1,6 +1,7 @@
 package com.wallet.rippleflow
 
 import android.app.AlertDialog
+import android.content.*
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
@@ -10,10 +11,12 @@ import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.core.content.ContextCompat.getSystemService
-import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.wallet.rippleflow.contact.ViewModel.ContactViewModel
+import androidx.fragment.app.Fragment
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.MultiFormatWriter
 import com.google.zxing.WriterException
@@ -27,6 +30,7 @@ class ProfileFragm : Fragment() {
     private val binding get() = _binding!!
     private lateinit var preferencesKEY: SharedPreferences
     private lateinit var preferencesPIN: SharedPreferences
+    private lateinit var contactViewModel: ContactViewModel
 
     private lateinit var address: String
 
@@ -42,6 +46,18 @@ class ProfileFragm : Fragment() {
             BottomSheetChangePINFragment().show(requireFragmentManager(), "SS")
         }
 
+        binding.btnTransactionsHistory.setOnClickListener {
+            findNavController().navigate(R.id.action_profileFragm_to_transactionsHistoryFragment)
+        }
+
+        binding.btnCopy.setOnClickListener {
+            var myClipboard = getSystemService(requireContext(), ClipboardManager::class.java) as ClipboardManager
+            val copyText = address
+            val clip = ClipData.newPlainText("Copied",copyText)
+            myClipboard.setPrimaryClip(clip)
+            Toast.makeText(requireActivity(), "Copied", Toast.LENGTH_SHORT).show()
+        }
+
 
         binding.btnLogOut.setOnClickListener{
             val builder: AlertDialog.Builder = AlertDialog.Builder(activity, R.style.CustomAlertDialog)
@@ -50,12 +66,17 @@ class ProfileFragm : Fragment() {
 
                 .setPositiveButton("YES",
                     DialogInterface.OnClickListener { _, _ ->
+
                         preferencesKEY.edit()
                             .putString(APP_PREFERENCES_KEY, "")
                             .apply()
                         preferencesPIN.edit()
                             .putString(APP_PREFERENCES_PIN, "")
                             .apply()
+
+                        contactViewModel = ViewModelProvider(this).get(ContactViewModel::class.java)
+                        contactViewModel.deleteAllDataContact(requireContext())
+
                         findNavController().navigate(R.id.action_profileFragm_to_registrationFragment)
                     })
 
@@ -68,7 +89,7 @@ class ProfileFragm : Fragment() {
         }
 
 
-        binding.textViewAddress.text = preferencesKEY.getString(APP_PREFERENCES_KEY, "").toString()
+        binding.textViewAddress.text = address//preferencesKEY.getString(APP_PREFERENCES_KEY, "").toString()
 
         binding.btnShare.setOnClickListener {
             val shareText = Intent(Intent.ACTION_SEND)
