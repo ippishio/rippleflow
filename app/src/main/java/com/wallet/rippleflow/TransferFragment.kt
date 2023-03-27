@@ -51,9 +51,9 @@ class TransferFragment : Fragment() {
                     binding.inputLayoutAddressTransfer.error = null
                     var preferences: SharedPreferences =
                         activity?.getSharedPreferences(APP_PREFERENCES_KEY, Context.MODE_PRIVATE)!!
-
-                    Thread {
-                        try {
+                    try {
+                        println(amount)
+                        Thread {
                             var result_hash =
                                 (XRPL(preferences.getString(APP_PREFERENCES_KEY, "")!!).sendXRP(
                                     address,
@@ -64,18 +64,14 @@ class TransferFragment : Fragment() {
                                 println(result_hash)
                                 findNavController().navigate(R.id.action_transferFragment_to_zaebokFragment)
                             }
-                        } catch(e:java.lang.IllegalArgumentException){
-                            activity?.runOnUiThread {
-                                Toast.makeText(getActivity(), "An error occurred during transaction",
-                                    Toast.LENGTH_LONG).show();
-                            }
-                        } catch(e:EncodingFormatException){
-                            activity?.runOnUiThread {
-                                Toast.makeText(getActivity(), "An error occurred during transaction",
-                                    Toast.LENGTH_LONG).show();
-                            }
-                        }
-                    }.start()
+                        }.start()
+                    } catch(e:java.lang.IllegalArgumentException){
+                        Toast.makeText(getActivity(), "An error occurred during transaction",
+                            Toast.LENGTH_LONG).show();
+                } catch(e:EncodingFormatException){
+                        Toast.makeText(getActivity(), "An error occurred during transaction",
+                            Toast.LENGTH_LONG).show();
+                }
                 }
             }
         }
