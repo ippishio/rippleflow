@@ -5,14 +5,6 @@ import android.content.DialogInterface
 import android.os.Bundle
 import android.view.*
 import androidx.activity.OnBackPressedCallback
-import android.content.Context
-import android.content.DialogInterface
-import android.content.SharedPreferences
-import android.os.Bundle
-import android.view.*
-import android.widget.TextView
-import androidx.activity.OnBackPressedCallback
-import androidx.annotation.UiThread
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -33,6 +25,8 @@ class MainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        (activity as AppCompatActivity).supportActionBar?.show()
         _binding = FragmentMainBinding.inflate(inflater, container, false)
         activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, object :OnBackPressedCallback(true){
             @Override
@@ -48,6 +42,7 @@ class MainFragment : Fragment() {
                 alertDialog.show()
             }
         });
+
 
         return binding.root
     }

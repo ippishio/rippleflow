@@ -15,7 +15,6 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.wallet.rippleflow.databinding.ActivityMainBinding
 import java.util.concurrent.Executor
-import com.wallet.rippleflow.databinding.ActivityMainBinding
 
 const val APP_PREFERENCES_KEY = "APP_PREFERENCES_KEY"
 const val  APP_PREFERENCES_PIN = "APP_PREFERENCES_PIN"

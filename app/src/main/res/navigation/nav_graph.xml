@@ -102,6 +102,9 @@
         <action
             android:id="@+id/action_profileFragm_to_registrationFragment"
             app:destination="@id/registrationFragment" />
+        <action
+            android:id="@+id/action_profileFragm_to_transactionsHistoryFragment"
+            app:destination="@id/transactionsHistoryFragment" />
     </fragment>
     <fragment
         android:id="@+id/qrFragment"

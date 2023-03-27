@@ -6,11 +6,6 @@ import android.content.SharedPreferences
 import android.hardware.biometrics.BiometricManager.Authenticators.BIOMETRIC_STRONG
 import android.hardware.biometrics.BiometricManager.Authenticators.DEVICE_CREDENTIAL
 import androidx.navigation.fragment.findNavController
-import androidx.biometric.BiometricManager
-import androidx.biometric.BiometricPrompt
-import androidx.core.content.ContextCompat
-import androidx.navigation.fragment.findNavController
-import com.wallet.rippleflow.databinding.FragmentPinCodeBinding
 import android.os.Build
 import android.os.Bundle
 import android.os.VibrationEffect

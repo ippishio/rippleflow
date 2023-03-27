@@ -8,8 +8,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.wallet.rippleflow.databinding.FragmentBottomSheetTransferBinding
 import com.wallet.rippleflow.contact.Model.Contact
 import com.wallet.rippleflow.contact.ViewModel.ContactViewModel
-import android.widget.Toast
-import com.wallet.rippleflow.databinding.FragmentBottomSheetTransferBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class BottomSheetTransferFragment: BottomSheetDialogFragment() {

@@ -2,8 +2,6 @@ package com.wallet.rippleflow
 
 import android.app.AlertDialog
 import android.content.*
-import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
@@ -17,12 +15,8 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.wallet.rippleflow.databinding.FragmentProfile2Binding
 import com.wallet.rippleflow.contact.ViewModel.ContactViewModel
-import android.view.inputmethod.InputMethodManager
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.MultiFormatWriter
 import com.google.zxing.WriterException
@@ -49,7 +43,7 @@ class ProfileFragm : Fragment() {
         preferencesPIN = activity?.getSharedPreferences(APP_PREFERENCES_PIN, Context.MODE_PRIVATE)!!
         address = "lsakdjfjf12oiupiofu9o287cn0948yrnoi1u3"
         binding.btnChangePIN.setOnClickListener {
-            BottomSheetChangePINFragment().show(fragmentManager!!, "SS")
+            BottomSheetChangePINFragment().show(requireFragmentManager(), "SS")
         }
 
         binding.btnTransactionsHistory.setOnClickListener {
