@@ -14,6 +14,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.wallet.rippleflow.databinding.ActivityMainBinding
+import org.xrpl.xrpl4j.client.XrplClient
 import java.util.concurrent.Executor
 
 const val APP_PREFERENCES_KEY = "APP_PREFERENCES_KEY"
@@ -21,16 +22,19 @@ const val  APP_PREFERENCES_PIN = "APP_PREFERENCES_PIN"
 
 class MainActivity : AppCompatActivity() {
 
+
+
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
-    private lateinit var preferences: SharedPreferences
+    public lateinit var preferences: SharedPreferences
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        preferences = getSharedPreferences(APP_PREFERENCES_KEY, Context.MODE_PRIVATE)
         WindowCompat.setDecorFitsSystemWindows(window, false)
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
-        preferences = getSharedPreferences(APP_PREFERENCES_KEY, Context.MODE_PRIVATE)
 
         setContentView(binding.root)
 

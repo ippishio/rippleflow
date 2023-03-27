@@ -41,7 +41,13 @@ class ProfileFragm : Fragment() {
         _binding = FragmentProfile2Binding.inflate(inflater, container, false)
         preferencesKEY = activity?.getSharedPreferences(APP_PREFERENCES_KEY, Context.MODE_PRIVATE)!!
         preferencesPIN = activity?.getSharedPreferences(APP_PREFERENCES_PIN, Context.MODE_PRIVATE)!!
-        address = "lsakdjfjf12oiupiofu9o287cn0948yrnoi1u3"
+        Thread {
+            var ans = XRPL(preferencesKEY.getString(APP_PREFERENCES_KEY, "")!!).getAddress()
+            activity?.runOnUiThread {
+                binding.textViewAddress.text = ans//preferencesKEY.getString(APP_PREFERENCES_KEY, "").toString()
+
+            }
+        }.start()
         binding.btnChangePIN.setOnClickListener {
             BottomSheetChangePINFragment().show(requireFragmentManager(), "SS")
         }
@@ -89,8 +95,6 @@ class ProfileFragm : Fragment() {
         }
 
 
-        binding.textViewAddress.text = address//preferencesKEY.getString(APP_PREFERENCES_KEY, "").toString()
-
         binding.btnShare.setOnClickListener {
             val shareText = Intent(Intent.ACTION_SEND)
             shareText.type = "text/plain"
@@ -103,11 +107,16 @@ class ProfileFragm : Fragment() {
         var qr = binding.qrCode
 
         val mWriter = MultiFormatWriter()
+        Thread {
+            var ans = XRPL(preferencesKEY.getString(APP_PREFERENCES_KEY, "")!!).getAddress()
+            activity?.runOnUiThread {
+                val mMatrix = mWriter.encode(ans, BarcodeFormat.QR_CODE, 400, 400)
+                val mEncoder = BarcodeEncoder()
+                val mBitmap = mEncoder.createBitmap(mMatrix)
+                qr.setImageBitmap(mBitmap)
+            }
+        }.start()
 
-        val mMatrix = mWriter.encode(preferencesKEY.getString(APP_PREFERENCES_KEY, "").toString(), BarcodeFormat.QR_CODE, 400, 400)
-        val mEncoder = BarcodeEncoder()
-        val mBitmap = mEncoder.createBitmap(mMatrix)
-        qr.setImageBitmap(mBitmap)
 
         setHasOptionsMenu(true)
         return binding.root

@@ -1,7 +1,9 @@
 package com.wallet.rippleflow
 
 import android.app.AlertDialog
+import android.content.Context
 import android.content.DialogInterface
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.*
 import androidx.activity.OnBackPressedCallback
@@ -20,7 +22,6 @@ class MainFragment : Fragment() {
 
     private var _binding : FragmentMainBinding? = null
     private val binding get() = _binding!!
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,6 +49,14 @@ class MainFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        var preferences: SharedPreferences = activity?.getSharedPreferences(APP_PREFERENCES_KEY, Context.MODE_PRIVATE)!!
+        Thread {
+            val balance = XRPL(preferences.getString(APP_PREFERENCES_KEY, "").toString()).getBalance()
+            activity?.runOnUiThread {
+                binding.textViewXRPAmount.text = (balance/1000000f).toString()
+                convertToDollars((balance/1000000f).toString())
+            }
+        }.start()
         super.onViewCreated(view, savedInstanceState)
 
 //        convertToDollars("1")
@@ -87,6 +96,7 @@ class MainFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
 
 
 }
