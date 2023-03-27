@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
@@ -51,14 +52,11 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         var preferences: SharedPreferences = activity?.getSharedPreferences(APP_PREFERENCES_KEY, Context.MODE_PRIVATE)!!
         Thread {
-            val balance = XRPL(preferences.getString(APP_PREFERENCES_KEY, "").toString()).getBalance()
+            val balance =
+                XRPL(preferences.getString(APP_PREFERENCES_KEY, "").toString()).getBalance()
             activity?.runOnUiThread {
-                try {
-                    binding.textViewXRPAmount.text = (balance / 1000000f).toString()
-                    convertToDollars((balance / 1000000f).toString())
-                } catch (e: Exception) {
-
-                }
+                binding.textViewXRPAmount.text = (balance / 1000000f).toString()
+                convertToDollars((balance / 1000000f).toString())
             }
         }.start()
         super.onViewCreated(view, savedInstanceState)
