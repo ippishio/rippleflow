@@ -37,6 +37,8 @@ class BottomSheetNFCFragment: BottomSheetDialogFragment(), CreateNdefMessageCall
     ): View? {
         binding = FragmentBottomSheetNfcBinding.inflate(inflater, container, false)
 
+        val data = arguments?.getString("amount").toString()
+
         nfcAdapter = getDefaultAdapter(requireContext())
         if (nfcAdapter == null) {
             Toast.makeText(requireContext(), "NFC is not available", Toast.LENGTH_LONG).show();
