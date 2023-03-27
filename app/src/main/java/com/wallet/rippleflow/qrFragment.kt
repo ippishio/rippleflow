@@ -43,7 +43,7 @@ class qrFragment : Fragment() {
     @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, intent: Intent?) {
         val result = IntentIntegrator.parseActivityResult(resultCode, intent)
-        if (result != null) {
+        if (result.contents != null) {
             var mytoast = Toast.makeText(this.activity, result.contents, Toast.LENGTH_SHORT)
             mytoast.show()
             findNavController().navigate(R.id.action_qrFragment_to_mainFragment)
