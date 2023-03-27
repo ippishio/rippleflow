@@ -4,7 +4,7 @@
 ## Getting started
 - Clone the repo and build it in Android Studio:
 ```git clone https://github.com/ippishio/rippleflow/```
-- Or just [download](https://github.com/ippishio/rippleflow/blob/master/build/rippleflow.apk) APK from build folder
+- Or just [download](https://github.com/ippishio/rippleflow/blob/master/rippleflow-build.apk) APK from build folder
   
 
 ## Inspiration
