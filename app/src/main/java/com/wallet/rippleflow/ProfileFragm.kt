@@ -31,6 +31,7 @@ class ProfileFragm : Fragment() {
     private val binding get() = _binding!!
     private lateinit var preferencesKEY: SharedPreferences
     private lateinit var preferencesPIN: SharedPreferences
+    private lateinit var preferences: SharedPreferences
     private lateinit var contactViewModel: ContactViewModel
 
     private lateinit var address: String
@@ -43,8 +44,15 @@ class ProfileFragm : Fragment() {
         _binding = FragmentProfile2Binding.inflate(inflater, container, false)
         preferencesKEY = activity?.getSharedPreferences(APP_PREFERENCES_KEY, Context.MODE_PRIVATE)!!
         preferencesPIN = activity?.getSharedPreferences(APP_PREFERENCES_PIN, Context.MODE_PRIVATE)!!
+        preferences = activity?.getSharedPreferences(
+            APP_PREFERENCES_PIN, Context.MODE_PRIVATE
+        )!!
+//        val app = preferences.getString(APP_PREFERENCES_KEY, "").toString()
+//        val x = XRPL(app)
+//        address = x.getAddress()
         Thread {
             var ans = XRPL(preferencesKEY.getString(APP_PREFERENCES_KEY, "")!!).getAddress()
+            address = ans
             activity?.runOnUiThread {
                 binding.textViewAddress.text = ans//preferencesKEY.getString(APP_PREFERENCES_KEY, "").toString()
 

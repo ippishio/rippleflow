@@ -36,13 +36,6 @@ class TransactionsHistoryFragment : Fragment() {
 
         transactionViewModel = ViewModelProvider(this).get(TransactionViewModel::class.java)
 
-        transactionViewModel.insert(requireContext(), Transaction(
-            address = "S:LDKJFS:LDF",
-            date = "21.05.2020",
-            sum = "9999XRP"
-        )
-        )
-
         transactionViewModel.getAllTransactionData(requireContext()).observe(viewLifecycleOwner, Observer {
             transactionAdapter.setData(it as ArrayList<Transaction>)
         })

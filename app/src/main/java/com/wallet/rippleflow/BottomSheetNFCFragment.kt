@@ -1,8 +1,12 @@
 package com.wallet.rippleflow
 
-import android.R
 import android.annotation.SuppressLint
+import android.app.AlertDialog
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
+import android.content.pm.PackageManager
 import android.graphics.drawable.AnimatedVectorDrawable
 import android.nfc.NdefMessage
 import android.nfc.NdefRecord
@@ -11,23 +15,39 @@ import android.nfc.NfcAdapter.CreateNdefMessageCallback
 import android.nfc.NfcAdapter.getDefaultAdapter
 import android.nfc.NfcEvent
 import android.os.Bundle
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.wallet.rippleflow.HceCardEmulationApduService.Companion.NFC_NDEF_KEY
 import com.wallet.rippleflow.databinding.FragmentBottomSheetNfcBinding
+import timber.log.Timber
 
 
-class BottomSheetNFCFragment: BottomSheetDialogFragment(), CreateNdefMessageCallback {
+class BottomSheetNFCFragment: BottomSheetDialogFragment(){
     private lateinit var binding: FragmentBottomSheetNfcBinding
+
     private var nfcAdapter: NfcAdapter? = null
+    private lateinit var data: String
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        nfcAdapter = NfcAdapter.getDefaultAdapter(requireContext())
+
+//        binding.startServiceBtn.setOnClickListener {
+        initNFCFunction()
+//            binding.status.text = getString(R.string.service_enabled)
+//        }
+//        binding.stopServiceBtn.setOnClickListener {
+//            stopNfcService()
+//            binding.status.text = getString(R.string.service_disabled)
+//        }
     }
+
 
     @SuppressLint("ResourceType")
     override fun onCreateView(
@@ -43,58 +63,84 @@ class BottomSheetNFCFragment: BottomSheetDialogFragment(), CreateNdefMessageCall
         if (nfcAdapter == null) {
             Toast.makeText(requireContext(), "NFC is not available", Toast.LENGTH_LONG).show();
         }
-        nfcAdapter?.setNdefPushMessageCallback(this, activity);
-
+        initNfcService()
+//        nfcAdapter?.setNdefPushMessageCallback(this, activity);
 
         (binding.imageView13.drawable as AnimatedVectorDrawable).start()
         return binding.root
     }
 
-    @SuppressLint("NewApi")
-    override fun createNdefMessage(event: NfcEvent?): NdefMessage? { //before the record can be sent it has to be in a message
-        val address = "SDFSDF"
-        val StringBytes =
-            address.toByteArray() // the string has to be converted to bytes.
-        val ndefRecordOut =
-            NdefRecord( // the record has to be created first then the message
-                NdefRecord.TNF_MIME_MEDIA,  // record type of text
-                address.toByteArray(), byteArrayOf(),  //empty byte array
-                StringBytes
-            ) // text as bytes in the array
-        return NdefMessage(ndefRecordOut)
-    }
-
-    override fun onResume() {
-        super.onResume()
-        // Check to see that the Activity started due to an Android Beam
-        if (NfcAdapter.ACTION_NDEF_DISCOVERED.equals(requireActivity().getIntent().action)) {
-            processIntent(requireActivity().getIntent())
+    private fun initNFCFunction() {
+        if (!requireActivity().packageManager.hasSystemFeature(PackageManager.FEATURE_NFC_HOST_CARD_EMULATION)) {
+//            binding.status.text = getString(R.string.hce_not_available)
+            Toast.makeText(requireContext(), "hce not available", Toast.LENGTH_SHORT).show()
+            return
         }
-        if (!nfcAdapter!!.isEnabled) {
-            Toast.makeText(context, "NFC is disabled. Please turn on in settings.", Toast.LENGTH_LONG)
-                .show()
+
+        if (nfcAdapter?.isEnabled == true) {
+            initNfcService()
         } else {
-            Toast.makeText(context, "NFC is enabled. You can begin transfer.", Toast.LENGTH_LONG)
-                .show()
+            showTurnOnNfcDialog()
         }
     }
 
-    @SuppressLint("MissingSuperCall")
-    fun onNewIntent(intent: Intent?) {
-        activity?.intent = intent
+    private fun initNfcService() {
+        val inputText = "11000980981"
+
+        val intent = Intent(requireContext(), HceCardEmulationApduService::class.java)
+        intent.putExtra(NFC_NDEF_KEY, inputText)
+        requireContext().startService(intent)
+
+        val filter = IntentFilter(NFC_BROADCAST)
+        requireContext().registerReceiver(nfcReceiver, filter)
     }
 
+    private fun stopNfcService() {
+        if (nfcAdapter?.isEnabled == true) {
+            requireContext().stopService(Intent(requireContext(), HceCardEmulationApduService::class.java))
+        }
 
-    fun processIntent(intent: Intent) {
-        var textView = "TEXTETXTEXT"
-        val rawMsgs = intent.getParcelableArrayExtra(
-            NfcAdapter.EXTRA_NDEF_MESSAGES
-        ) //Extra containing an array of NdefMessage present on the discovered tag.
-        // only one message sent during the beam
-        val msg = rawMsgs!![0] as NdefMessage
-        // record 0 contains the MIME type, record 1 is the AAR, if present
-//        textView.setText(String(msg.records[0].payload)) // sets the textview to the message
-        Toast.makeText(context, String(msg.records[0].payload), Toast.LENGTH_LONG).show()
+//        binding.status.text = getString(R.string.service_disabled)
+        Toast.makeText(requireContext(), "service disabled", Toast.LENGTH_SHORT).show()
+
+        try {
+            requireContext().unregisterReceiver(nfcReceiver)
+        } catch (ex: Exception) {
+            Timber.d("nfcReceiver not registered.")
+        }
+    }
+
+    private fun showTurnOnNfcDialog() {
+        val nfcDialog = AlertDialog.Builder(requireContext())
+            .setTitle(getString(R.string.nfc_turn_on_title))
+            .setMessage(getString(R.string.nfc_turn_on_message))
+            .setPositiveButton(getString(R.string.nfc_turn_on_positive)) { dialog, _ ->
+                startActivity(Intent(Settings.ACTION_NFC_SETTINGS))
+                dialog.dismiss()
+            }
+            .setNegativeButton(getString(R.string.nfc_turn_on_negative)) { dialog, _ -> dialog.dismiss() }
+            .create()
+        nfcDialog.show()
+    }
+
+    private val nfcReceiver = object : BroadcastReceiver() {
+
+        override fun onReceive(context: Context, intent: Intent) {
+            if (intent.hasExtra(NFC_EXTRA_NDEF_SENT)) {
+                if (intent.getBooleanExtra(NFC_EXTRA_NDEF_SENT, false)) {
+                    Toast.makeText(
+                        requireContext(),
+                        "NDEF was sent successfully",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
+    }
+
+    companion object {
+        const val NFC_BROADCAST = "com.app.host_based_card_emulation"
+        const val NFC_EXTRA_NDEF_SENT = "nfc_ndef_sent"
     }
 
 }

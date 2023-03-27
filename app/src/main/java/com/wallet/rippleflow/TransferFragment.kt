@@ -19,6 +19,10 @@ import com.wallet.rippleflow.contact.*
 import com.wallet.rippleflow.contact.Adapter.ContactsAdapter
 import com.wallet.rippleflow.contact.Model.Contact
 import com.wallet.rippleflow.contact.ViewModel.ContactViewModel
+import com.wallet.rippleflow.transaction.Adapter.TransactionsAdapter
+import com.wallet.rippleflow.transaction.Model.Transaction
+import com.wallet.rippleflow.transaction.ViewModel.TransactionViewModel
+import java.time.LocalDateTime
 
 class TransferFragment : Fragment() {
 
@@ -27,6 +31,9 @@ class TransferFragment : Fragment() {
 
     private lateinit var contactsAdapter: ContactsAdapter
     private lateinit var contactViewModel: ContactViewModel
+
+    private lateinit var transactionViewModel: TransactionViewModel
+    private lateinit var transactionsAdapter: TransactionsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -62,6 +69,14 @@ class TransferFragment : Fragment() {
 
                         }
                     }.start()
+
+                    val transaction = Transaction(
+                        address = address,
+                        date = LocalDateTime.now().toString(),
+                        sum = amount
+                    )
+                    transactionViewModel = ViewModelProvider(this).get(TransactionViewModel::class.java)
+                    transactionViewModel.insert(requireContext(), transaction)
 
                     findNavController().navigate(R.id.action_transferFragment_to_zaebokFragment)
                 }
