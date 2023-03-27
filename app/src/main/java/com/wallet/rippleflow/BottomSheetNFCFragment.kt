@@ -1,11 +1,13 @@
 package com.wallet.rippleflow
 
 import android.annotation.SuppressLint
+import android.graphics.drawable.AnimatedVectorDrawable
 import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.wallet.rippleflow.databinding.FragmentBottomSheetNfcBinding
 
@@ -29,6 +31,7 @@ class BottomSheetNFCFragment: BottomSheetDialogFragment() {
     ): View? {
         binding = FragmentBottomSheetNfcBinding.inflate(inflater, container, false)
 
+        (binding.imageView13.drawable as AnimatedVectorDrawable).start()
         return binding.root
     }
 

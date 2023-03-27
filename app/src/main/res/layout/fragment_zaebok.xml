@@ -6,15 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".ZaebokFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ZAEBIS'"
-        android:textColor="@color/green"
-        android:textSize="70dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/checkmark_animation"
+        app:loopCount="1"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
