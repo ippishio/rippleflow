@@ -49,8 +49,6 @@ class qrFragment : Fragment() {
             findNavController().navigate(R.id.action_qrFragment_to_mainFragment)
         } else {
             findNavController().navigate(R.id.action_qrFragment_to_mainFragment)
-            // This is important, otherwise the result will not be passed to the fragment
-            //super.onActivityResult(requestCode, resultCode, intent)
         }
     }
 

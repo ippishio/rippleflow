@@ -6,11 +6,4 @@
     android:layout_height="match_parent"
     tools:context=".qrFragment">
 
-    <com.journeyapps.barcodescanner.DecoratedBarcodeView
-        android:id="@+id/zxing_barcode_scanner"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:zxing_scanner_layout="@layout/custom_qr_scanner">
-    </com.journeyapps.barcodescanner.DecoratedBarcodeView>
-
 </RelativeLayout>
