@@ -48,9 +48,8 @@ class ProfileFragm : Fragment() {
             try {
                 var ans = XRPL(preferencesKEY.getString(APP_PREFERENCES_KEY, "")!!).getAddress()
                 activity?.runOnUiThread {
-                    binding.textViewAddress.text =
-                        ans//preferencesKEY.getString(APP_PREFERENCES_KEY, "").toString()
-
+                    binding.textViewAddress.text = ans
+                    address = ans
                 }
             } catch (e: EncodingFormatException){
                 activity?.runOnUiThread {
@@ -68,10 +67,14 @@ class ProfileFragm : Fragment() {
 
         binding.btnCopy.setOnClickListener {
             var myClipboard = getSystemService(requireContext(), ClipboardManager::class.java) as ClipboardManager
-            val copyText = address
-            val clip = ClipData.newPlainText("Copied",copyText)
-            myClipboard.setPrimaryClip(clip)
-            Toast.makeText(requireActivity(), "Copied", Toast.LENGTH_SHORT).show()
+            try {
+                val copyText = address
+                val clip = ClipData.newPlainText("Copied", copyText)
+                myClipboard.setPrimaryClip(clip)
+                Toast.makeText(requireActivity(), "Copied", Toast.LENGTH_SHORT).show()
+            } catch(e:UninitializedPropertyAccessException){
+                Toast.makeText(requireActivity(), "Failed to copy, try again...", Toast.LENGTH_SHORT).show()
+            }
         }
 
 
