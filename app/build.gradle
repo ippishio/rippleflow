@@ -60,11 +60,6 @@ dependencies {
     def lifecycle_version = "2.6.1"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:lifecycle_version"
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
-
-    implementation 'org.xrpl:xrpl4j-bom:3.0.0'
-    implementation 'org.xrpl:xrpl4j-core:3.0.0'
-    implementation 'org.xrpl:xrpl4j-client:3.0.0'
-
     implementation 'com.google.zxing:core:3.4.0'
     implementation 'com.journeyapps:zxing-android-embedded:4.1.0@aar'
 

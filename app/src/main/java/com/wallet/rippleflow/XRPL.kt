@@ -15,7 +15,9 @@ import org.xrpl.xrpl4j.model.transactions.XrpCurrencyAmount
 
 
 class XRPL(secretKey: String = "") {
-
+    init {
+        println(secretKey)
+    }
     var xrplClient = XrplClient("https://s.altnet.rippletest.net:51234/".toHttpUrl())
     val seed = Seed.fromBase58EncodedSecret(Base58EncodedSecret.of(secretKey))
     val keyPair: KeyPair = seed.deriveKeyPair()

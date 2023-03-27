@@ -115,7 +115,8 @@ class PinCodeFragment : Fragment() {
                     })
             val alertDialog: AlertDialog = builder.create()
             alertDialog.show()
-
+            alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.md_theme_light_error));
+            alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.md_theme_light_error));
         }
 
         return binding.root

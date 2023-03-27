@@ -36,23 +36,22 @@ class RegistrationFragment : Fragment() {
             if (key.isEmpty()) binding.textInputLayout.error = "Enter address!"
             else {
                 binding.textInputLayout.error = null
-                if (validAccount(key)) {
 
-                    preferences.edit()
-                        .putString(APP_PREFERENCES_KEY, key)
-                        .apply()
 
-                    //                Toast.makeText(activity, "Reg", Toast.LENGTH_SHORT)
-                    //                    .show()
-                    //                Toast.makeText(activity, preferences.getString(APP_PREFERENCES_KEY, "nothing").toString(), Toast.LENGTH_SHORT)
-                    //                    .show()
-                    //                Toast.makeText(activity, preferences.getString(APP_PREFERENCES_PIN, "nothing").toString(), Toast.LENGTH_SHORT)
-                    //                    .show()
+                preferences.edit()
+                    .putString(APP_PREFERENCES_KEY, key)
+                    .apply()
 
-                    findNavController().navigate(
-                        R.id.action_registrationFragment_to_createPinCodeFragment
-                    )
-                }
+                //                Toast.makeText(activity, "Reg", Toast.LENGTH_SHORT)
+                //                    .show()
+                //                Toast.makeText(activity, preferences.getString(APP_PREFERENCES_KEY, "nothing").toString(), Toast.LENGTH_SHORT)
+                //                    .show()
+                //                Toast.makeText(activity, preferences.getString(APP_PREFERENCES_PIN, "nothing").toString(), Toast.LENGTH_SHORT)
+                //                    .show()
+
+                findNavController().navigate(
+                    R.id.action_registrationFragment_to_createPinCodeFragment
+                )
             }
 //            val passwordText = binding.editTextPassword.text.toString()
 
@@ -61,16 +60,6 @@ class RegistrationFragment : Fragment() {
         setHasOptionsMenu(true)
 
         return binding.root
-    }
-
-    fun validAccount(key: String) : Boolean {
-        // TODO CHECKING ACCOUNT VALIDATION
-        if(key.isEmpty()) {
-            Toast.makeText(context, "key cannot be empty", Toast.LENGTH_SHORT).show()
-            return false
-        } else
-            return true
-        return false
     }
 
     override fun onPrepareOptionsMenu(menu: Menu) {
