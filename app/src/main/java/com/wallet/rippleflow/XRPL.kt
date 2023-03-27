@@ -12,8 +12,7 @@ import org.xrpl.xrpl4j.model.client.fees.FeeUtils
 import org.xrpl.xrpl4j.model.transactions.Address
 import org.xrpl.xrpl4j.model.transactions.Payment
 import org.xrpl.xrpl4j.model.transactions.XrpCurrencyAmount
-
-class XRPL(secretKey: String = ""): Service {
+class XRPL(secretKey: String = "") {
 
     var xrplClient = XrplClient("https://s.altnet.rippletest.net:51234/".toHttpUrl())
     val seed = Seed.fromBase58EncodedSecret(Base58EncodedSecret.of(secretKey))
@@ -21,17 +20,15 @@ class XRPL(secretKey: String = ""): Service {
     val address = keyPair.publicKey().deriveAddress();
     var signatureService = BcSignatureService()
     var feeResult = xrplClient.fee()
-
-
-    override suspend fun getAddress(): String{
+    fun getAddress(): String{
         return address.toString()
     }
-    override suspend fun getBalance(): Long {
+    fun getBalance(): Long {
         val requestParams = AccountInfoRequestParams.of(address)
         val accountInfoResult = xrplClient.accountInfo(requestParams)
         return accountInfoResult.accountData().balance().toString().toLong()
     }
-    override suspend fun sendXRP(receiverAddress: String, amount:Long): String? {
+    fun sendXRP(receiverAddress: String, amount:Long): String? {
         val requestParams = AccountInfoRequestParams.of(address)
         val accountInfoResult = xrplClient.accountInfo(requestParams)
         println(accountInfoResult.accountData().sequence())

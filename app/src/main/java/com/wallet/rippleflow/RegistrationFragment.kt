@@ -63,8 +63,9 @@ class RegistrationFragment : Fragment() {
         if(key.isEmpty()) {
             Toast.makeText(context, "key cannot be empty", Toast.LENGTH_SHORT).show()
             return false
-        }
-        return true
+        } else
+            return true
+        return false
     }
 
     override fun onPrepareOptionsMenu(menu: Menu) {
